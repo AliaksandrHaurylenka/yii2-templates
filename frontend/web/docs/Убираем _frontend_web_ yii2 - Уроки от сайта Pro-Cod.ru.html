@@ -1,0 +1,666 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Убираем /frontend/web/ yii2 - Уроки от сайта Pro-Cod.ru</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+			
+<!-- This site is optimized with the Yoast SEO plugin v4.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="http://pro-cod.ru/ubiraem-frontendweb-yii2.html"/>
+<meta property="og:locale" content="ru_RU"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Убираем /frontend/web/ yii2 - Уроки от сайта Pro-Cod.ru"/>
+<meta property="og:description" content="Настройка url для yii2. Для настройки url нам необходимо выполнить 4 шага. Шаг 1. Создайте в корневом каталоге файл .htaccess и добавьте следующий код. Шаг 2. Создайте в каталоге frontend/web файл .htaccess и добавьте следующий код. Шаг 3. В файл frontend/config/main.php добавляем следующий код Шаг 4. Создаем в каталоге корневая/common/ &hellip;"/>
+<meta property="og:url" content="http://pro-cod.ru/ubiraem-frontendweb-yii2.html"/>
+<meta property="og:site_name" content="Уроки от сайта Pro-Cod.ru"/>
+<meta property="article:section" content="Уроки по Yii framework 2.0"/>
+<meta property="article:published_time" content="2016-09-13T04:02:06+00:00"/>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//s.w.org'/>
+<link rel="alternate" type="application/rss+xml" title="Уроки от сайта Pro-Cod.ru &raquo; Лента комментариев к &laquo;Убираем /frontend/web/ yii2&raquo;" href="http://pro-cod.ru/ubiraem-frontendweb-yii2.html/feed"/>
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/pro-cod.ru\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.2"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='colorbox-theme1-css' href='http://pro-cod.ru/wp-content/plugins/jquery-colorbox/themes/theme1/colorbox.css?ver=4.6.2' type='text/css' media='screen'/>
+<link rel='stylesheet' id='contact-form-7-css' href='http://pro-cod.ru/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.6.1' type='text/css' media='all'/>
+<link rel='stylesheet' id='woocommerce-layout-css' href='//pro-cod.ru/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=2.6.13' type='text/css' media='all'/>
+<link rel='stylesheet' id='woocommerce-smallscreen-css' href='//pro-cod.ru/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=2.6.13' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' id='woocommerce-general-css' href='//pro-cod.ru/wp-content/plugins/woocommerce/assets/css/woocommerce.css?ver=2.6.13' type='text/css' media='all'/>
+<link rel='stylesheet' id='wp-pagenavi-css' href='http://pro-cod.ru/wp-content/plugins/wp-pagenavi/pagenavi-css.css?ver=2.70' type='text/css' media='all'/>
+<link rel='https://api.w.org/' href='http://pro-cod.ru/wp-json/'/>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://pro-cod.ru/xmlrpc.php?rsd"/>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://pro-cod.ru/wp-includes/wlwmanifest.xml"/> 
+<meta name="generator" content="WordPress 4.7.2"/>
+<meta name="generator" content="WooCommerce 2.6.13"/>
+<link rel='shortlink' href='http://pro-cod.ru/?p=1135'/>
+<link rel="alternate" type="application/json+oembed" href="http://pro-cod.ru/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fpro-cod.ru%2Fubiraem-frontendweb-yii2.html"/>
+<link rel="alternate" type="text/xml+oembed" href="http://pro-cod.ru/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fpro-cod.ru%2Fubiraem-frontendweb-yii2.html&#038;format=xml"/>
+<!-- <meta name="NextGEN" version="2.1.69" /> -->
+	<style type="text/css">
+		/* @font-face { font-family: "Rubl Sign"; src: url(http://pro-cod.ru/wp-content/plugins/saphali-woocommerce-lite/ruble.eot); } */
+		
+		@font-face { font-family: "rub-arial-regular"; src: url("http://pro-cod.ru/wp-content/plugins/saphali-woocommerce-lite/ruble-simb.woff"), url("http://pro-cod.ru/wp-content/plugins/saphali-woocommerce-lite/ruble-simb.ttf");
+		}
+		span.rur {
+			font-family: rub-arial-regular;
+			text-transform: uppercase;
+		}
+		span.rur span { display: none; }
+
+		/* span.rur { font-family: "Rubl Sign"; text-transform: uppercase;}
+		span.rur:before {top: 0.06em;left: 0.55em;content: '\2013'; position: relative;} */
+	</style>
+		<!-- WordPress Most Popular --><script type="text/javascript">/* <![CDATA[ */ jQuery.post("http://pro-cod.ru/wp-admin/admin-ajax.php", { action: "wmp_update", id: 1135, token: "f956588107" }); /* ]]> */</script><!-- /WordPress Most Popular -->
+
+<!-- Saphali Lite Version -->
+<meta name="generator" content="Saphali Lite 1.6.4"/>
+
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+	
+	<link rel="shortcut icon" href="http://pro-cod.ru/wp-content/themes/procod/favicon.ico"/>
+	<link rel="stylesheet" href="http://pro-cod.ru/wp-content/themes/procod/style.css" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" href="http://pro-cod.ru/wp-content/themes/procod/css/bootstrap.min.css" type="text/css" media="screen, projection"/>	
+	<link rel="stylesheet" href="http://pro-cod.ru/wp-content/themes/procod/css/dopstyle.css" type="text/css" media="screen, projection"/>	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script async src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script async src="http://pro-cod.ru/wp-content/themes/procod/js/bootstrap.min.js" type="text/javascript"></script>
+</head>
+<body class="bg-main">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80678534-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter20929837 = new Ya.Metrika({id:20929837,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/20929837" style="position:absolute; left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+						<div class="container oblozhka">
+			<div class="row nobg">
+				<div class="col-md-12 bg-head">
+					<a href="/" title="Дизайн - верстка - программирование" class="logo"></a>
+										<img class="procod" src="http://pro-cod.ru/wp-content/themes/procod/images/procod.png">
+				</div>
+			</div>
+			<div class="row menu">
+				<div class="col-md-12 menu-bg">
+					<ul><li><a title="Главная" href="/">Главная</a></li>
+<li><a title="Новости" href="http://pro-cod.ru/novosti">Новости</a></li>
+<li><a title="Контакты" href="http://pro-cod.ru/kontakty">Контакты</a></li>
+<li><a href="http://pro-cod.ru/magazin">Магазин</a></li>
+<li><a href="http://pro-cod.ru/kniga-otzyvov">Книга отзывов</a></li>
+</ul>					<div class="clr"></div>
+				</div>
+			</div>	
+		<div class="row">
+			<div class="col-md-9"> 
+				<div class="sidebar news-rub">
+					<div class="breadcrumb">
+						<p id="breadcrumbs"><span xmlns:v="http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb"><a href="http://pro-cod.ru/" rel="v:url" property="v:title">Главное меню</a> » <span rel="v:child" typeof="v:Breadcrumb"><a href="http://pro-cod.ru/uroki-po-yii-framework-2-0" rel="v:url" property="v:title">Уроки по Yii framework 2.0</a> » <span class="breadcrumb_last">Убираем /frontend/web/ yii2</span></span></span></span></p></div>
+					</div>
+															<div class="page single">
+							<div class="article-info">13 сентября 2016 года <i class="c-params__separator">|</i> Уроки по Yii framework 2.0</div>
+							<h1 class="title">Убираем /frontend/web/ yii2</h1>
+							<div class="entry">
+								<p>Настройка url для yii2. Для настройки url нам необходимо выполнить 4 шага.</p>
+<p>Шаг 1. Создайте в корневом каталоге файл .htaccess и добавьте следующий код.</p>
+<pre class="brush: php; title: ; notranslate" title="">
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+
+# if request begins with /admin remove admin and ad /backend/web/
+RewriteCond %{REQUEST_URI} ^/admin
+RewriteRule ^admin\/?(.*) /backend/web/$1
+
+# other requests add /frontend/web/$1
+RewriteCond %{REQUEST_URI} !^/(frontend/web|backend/web|admin)
+RewriteRule (.*) /frontend/web/$1
+
+# if frontend request
+RewriteCond %{REQUEST_URI} ^/frontend/web
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /frontend/web/index.php
+
+# if backend request
+RewriteCond %{REQUEST_URI} ^/backend/web
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /backend/web/index.php 
+</pre>
+<p>Шаг 2. Создайте в каталоге frontend/web файл .htaccess и добавьте следующий код.</p>
+<pre class="brush: php; title: ; notranslate" title="">
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteRule . index.php
+</pre>
+<p>Шаг 3. В файл frontend/config/main.php добавляем следующий код</p>
+<pre class="brush: php; title: ; notranslate" title="">
+'components' =&gt; [
+
+	//здесь какой-то код
+	
+	'request'=&gt;[
+		'class' =&gt; 'common\components\Request',
+		'web'=&gt; '/frontend/web'
+	],
+	'urlManager' =&gt; [
+		'enablePrettyUrl' =&gt; true,
+		'showScriptName' =&gt; false,
+	],
+	
+	//здесь какой-то код
+]
+</pre>
+<p>Шаг 4. Создаем в каталоге корневая/common/ каталог components в нем создаем файл Request.php со следующим содержимым</p>
+<pre class="brush: php; title: ; notranslate" title="">
+&lt;?
+namespace common\components;
+
+class Request extends \yii\web\Request
+{
+    public $web;
+    public $adminUrl;
+ 
+    public function getBaseUrl()
+    {
+        return str_replace($this-&gt;web, &quot;&quot;, parent::getBaseUrl()) . $this-&gt;adminUrl;
+    }  
+
+    public function resolvePathInfo()
+    {
+        if ($this-&gt;getUrl() === $this-&gt;adminUrl) {
+            return &quot;&quot;;
+        } else {
+            return parent::resolvePathInfo();
+        }
+    }
+}
+?&gt;
+</pre>
+<p>На этом все должно заработать</p>
+	<div id="hypercomments_widget"></div>
+    <script type="text/javascript">                                      
+    var _hcwp = _hcwp || [];
+    var _hc_real = {widget_id : 10724, widget : "Stream",
+     append: '#ts_widget', css: 'http://pro-cod.ru/wp-content/uploads/hc_css/hc_css_1380898859.css',
+     words_limit: 10, realtime: true, comments_level: 4,
+     platform: "wordpress", xid: 'pro-cod.ru/?p=1135' };
+    _hcwp.push(_hc_real);              
+    (function() { 
+    if("HC_LOAD_INIT" in window)return;
+    HC_LOAD_INIT = true;
+    var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+    var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+    hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/10724/"+lang+"/widget.js";
+    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hcc, s.nextSibling); 
+    })();
+    </script>
+        <a href="http://hypercomments.com" class="hc-link" title="comments widget">comments powered by HyperComments</a>
+			
+							</div>
+							<div class="donate">
+								Если вам нравится мой ресурс и вы хотите поддержать меня финансово, то вы можете перечислить сумму используя следующие реквизиты :<br/>
+								<ul>
+									<li><b>Яндекс кошелек</b> - 410011084137568</li>
+									<li><b>Webmoney</b> - R429373694729</li>	
+									<!--<li><b>Qiwi</b> - +77753258693</li>-->
+								</ul>
+							</div>
+						</div>	
+																	
+				
+				<div class="repost">
+					<noindex>
+						<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+						<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="link" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir,lj,gplus"></div> 
+					</noindex>
+				</div>
+			
+				<div id="ts_widget">
+					
+				</div>			
+								<!--БЛОК КОММЕТАРИЕВ-->
+								<!--/БЛОК КОММЕНТАРИЕВ/-->
+				
+				<div class="sample-posts">
+					<h3>Похожие статьи:</h3>
+					<ul>					<li><a href="http://pro-cod.ru/zagruzka-neskolkix-fajlov-yii2.html" rel="bookmark" title="Загрузка нескольких файлов  yii2">Загрузка нескольких файлов  yii2</a></li>
+										<li><a href="http://pro-cod.ru/yii2-formatirovanie-daty-iz-bd.html" rel="bookmark" title="Yii2 форматирование даты из БД">Yii2 форматирование даты из БД</a></li>
+										<li><a href="http://pro-cod.ru/yii2-nastraivaem-gii-na-xostinge.html" rel="bookmark" title="Yii2 настраиваем gii на хостинге">Yii2 настраиваем gii на хостинге</a></li>
+										<li><a href="http://pro-cod.ru/yii2-podklyuchaem-podskazki-ot-bootstrap.html" rel="bookmark" title="Yii2 подключаем подсказки от Bootstrap">Yii2 подключаем подсказки от Bootstrap</a></li>
+										<li><a href="http://pro-cod.ru/yii2-ne-rabotaet-otpravka-pisem.html" rel="bookmark" title="Yii2 не работает отправка писем">Yii2 не работает отправка писем</a></li>
+					</ul>				</div>	
+				
+			</div>
+			<div class="col-md-3 sidebar">
+				<div class="search-block">
+	<form role="search" method="get" id="searchform" action="http://pro-cod.ru/" style="position:relative;">
+		<input type="text" name="s" id="s" placeholder="Поиск по сайту"/>
+		<input type="image" src="http://pro-cod.ru/wp-content/themes/procod/images/search.png" id="searchsubmit" value="Поиск" class="search-pro"/>
+		
+	</form>
+	Обсудить можно здесь
+	<div style="margin-top:10px;" class="soc">
+	<noindex>
+	<a href="/feed" target="_blank" class="rss"></a>
+	<a href="http://vk.com/programcod" target="_blank" class="vk"></a>
+	<a href="https://twitter.com/procodru" target="_blank" class="twitter"></a>
+	<!-- Place this code where you want the badge to render. -->
+	<a style="display:inline-block;" target="_blank" href="//plus.google.com/109863810277935319627?prsrc=3" rel="publisher" target="_top" style="text-decoration:none;">
+	<img src="//ssl.gstatic.com/images/icons/gplus-32.png" alt="Google+" style="border:0;width:32px;height:32px;vertical-align:none !important;"/>
+	</a>
+	<a href="https://www.facebook.com/procodru" target="_blank" class="facebook"></a>
+	</noindex>
+	</div>
+</div>
+
+<!--<div class="help-people" style="margin-bottom:20px;margin-top:11px">
+<link rel="stylesheet" href="https://imgs.smartresponder.ru/e1bbeb24091b44f1f4048bbc87edacd11278fd23/">
+<script async type="text/javascript" src="https://imgs.smartresponder.ru/52568378bec6f68117c48f2f786db466014ee5a0/"></script>
+<script type="text/javascript">
+    _sr(function() {
+        _sr('form[name="SR_form_3_78"]').find('div#sr-preload_').prop('id', 'sr-preload_3_78');
+        _sr('#sr-preload_3_78').css({'width':parseInt(_sr('form[name="SR_form_3_78"]').width() + 'px'), 'height':parseInt(_sr('form[name="SR_form_3_78"]').height()) + 'px', 'line-height':parseInt(_sr('form[name="SR_form_3_78"]').height()) + 'px'}).show();
+        if(_sr('form[name="SR_form_3_78"]').find('input[name="script_url_3_78"]').length) {
+            _sr.ajax({
+                url: _sr('input[name="script_url_3_78"]').val() + '/' + (typeof document.charset !== 'undefined' ? document.charset : document.characterSet),
+                dataType: "script",
+                success: function() {
+                    _sr('#sr-preload_3_78').hide();
+                }
+            });
+        }
+    });
+</script>
+<div id="outer_alignment">
+    <form style="border: 1px solid rgb(200, 200, 200); border-radius: 6px; width: 100%; margin-left: ;" class="sr-box" method="post" action="https://smartresponder.ru/subscribe.html" name="SR_form_3_78">
+        <input name="field_name" class="sr-name" type="text">
+        <div id="sr-preload_" style="display: none; background-color: #f6f6f6; opacity: 0.5; position: absolute; z-index: 100; text-align: center; font: bold 15px Arial;">Загрузка...</div>
+        <ul class="sr-box-list"><li class="sr-3_78" style="text-align: center; border: 0px none; border-radius: 6px 6px 0px 0px; height: auto; padding: 3px;"><label style="font-family: arial; color: rgb(59, 59, 59); font-size: 16px; font-weight: bold; background: transparent url('https://imgs.smartresponder.ru/on/d363712d76c7bcfb99bf419b2122ebd7afbfd10f/') no-repeat scroll center bottom; width: 100%; text-align: center; box-sizing: border-box; border-radius: 6px 6px 0px 0px; line-height: 25px; padding: 15px 25px; height: auto;" class="">Подписка</label><input style="font-family: Arial; color: rgb(0, 0, 0); font-size: 12px; font-style: normal; font-weight: normal; background-color: rgb(255, 255, 255); border: medium none; box-shadow: none;" value="" name="element_header" type="hidden"></li><li class="sr-3_78" style="text-align: center; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border-radius: 0px; height: 56px;"><label class="remove_labels" style="font-weight: normal; font-family: arial; color: rgb(0, 0, 0); font-size: 13px; font-style: normal; display: none;"></label><input value="Ваше имя" style="background-image: none; font-weight: normal; background-color: rgb(255, 255, 255); font-family: arial; color: rgb(191, 191, 191); font-size: 12px; font-style: normal; border: 1px solid rgb(191, 191, 191); border-radius: 6px; height: 40px; box-shadow: none; margin-top: 15px;" name="field_name_first" type="text"></li><li class="sr-3_78" style="text-align: center; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border-radius: 0px; height: 56px;">
+<label class="remove_labels" style="font-weight: normal; font-family: arial; color: rgb(0, 0, 0); font-size: 12px; font-style: normal; display: none;"></label>
+<input value="Ваш email-адрес" style="background-image: none; font-weight: normal; background-color: rgb(255, 255, 255); font-family: arial; color: rgb(191, 191, 191); font-size: 13px; font-style: normal; border: 1px solid rgb(191, 191, 191); border-radius: 6px; height: 40px; box-shadow: none; margin-top: 15px;" name="field_email" class="sr-required" type="text">
+            </li><li class="sr-3_78" style="text-align: center; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border-radius: 0px 0px 6px 6px; border: 0px none; height: 90px;"><table id="elem_table_subscribe" style="display: inline-table; border-collapse: separate; margin-top: 20px;" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td style="background: transparent url('https://imgs.smartresponder.ru/on/cda4dafe28d42c41a1f9ca54b999d67d090259c2/') no-repeat scroll left center; width: 8px; height: 46px;" id="elem_left_subscribe" valign="middle"></td><td id="elem_container_subscribe" style="vertical-align: middle;"><input style="font-family: arial; color: rgb(88, 45, 0); font-size: 16px; font-weight: bold; border: 0px solid rgb(240, 240, 240); background: transparent url('https://imgs.smartresponder.ru/on/1afb55a144d3af2eb25b9d0ff1506c170f7264d9/') repeat scroll left center; height: 46px; width: 100%; margin: 0px; box-shadow: none; padding: 0px 25px;" name="subscribe" value="Подписаться" type="submit"></td><td style="background: transparent url('https://imgs.smartresponder.ru/on/dcfc04295d2410ac243ec802beeb783585674e9e/') no-repeat scroll left center; width: 8px; height: 46px;" id="elem_right_subscribe"></td></tr></tbody></table></li></ul>
+        <input name="uid" value="761791" type="hidden">
+    <input name="tid" value="0" type="hidden"><input name="lang" value="ru" type="hidden"><input name="did[]" value="921954" type="hidden"><input value="https://imgs.smartresponder.ru/on/d8b7d3c30154aa37cd66ebf6ee03cc303300905f/3_78" name="script_url_3_78" type="hidden"></form>
+</div>
+
+</div>-->
+
+<div class="help-people" style="margin-bottom:20px;">
+	<h2>Помощь проекту</h2>
+	<p style="padding:0px 15px;color:#999;font-size:12px;line-height:14px;">
+		В этом разделе вы можете предложить тему, которая интересна Вам и, возможно, многим другим пользователям.
+	</p>
+	<div class="textwidget">
+		<div class="accordion" id="accordion2">
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle btn btn-success" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+						Предложить тему
+					</a>
+				</div>
+				<div id="collapseTwo" class="accordion-body collapse">
+					<div class="accordion-inner">
+						<div role="form" class="wpcf7" id="wpcf7-f923-o1" dir="ltr">
+<div class="screen-reader-response"></div>
+<form action="/ubiraem-frontendweb-yii2.html#wpcf7-f923-o1" method="post" class="wpcf7-form" novalidate="novalidate">
+<div style="display: none;">
+<input type="hidden" name="_wpcf7" value="923"/>
+<input type="hidden" name="_wpcf7_version" value="4.6.1"/>
+<input type="hidden" name="_wpcf7_locale" value=""/>
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f923-o1"/>
+<input type="hidden" name="_wpnonce" value="6f4934870c"/>
+</div>
+<p>Описание темы (идеи)<br/>
+    <span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="5" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"></textarea></span> </p>
+<div class="wpcf7-form-control-wrap"><div data-sitekey="6LdLDQ0UAAAAABXxDeMv9rqh1KU_aTlwUaipe9MD" class="wpcf7-form-control g-recaptcha wpcf7-recaptcha"></div>
+<noscript>
+	<div style="width: 302px; height: 422px;">
+		<div style="width: 302px; height: 422px; position: relative;">
+			<div style="width: 302px; height: 422px; position: absolute;">
+				<iframe src="https://www.google.com/recaptcha/api/fallback?k=6LdLDQ0UAAAAABXxDeMv9rqh1KU_aTlwUaipe9MD" frameborder="0" scrolling="no" style="width: 302px; height:422px; border-style: none;">
+				</iframe>
+			</div>
+			<div style="width: 300px; height: 60px; border-style: none; bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px; background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+				<textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;">
+				</textarea>
+			</div>
+		</div>
+	</div>
+</noscript>
+</div>
+<p><input type="submit" value="Отправить" class="wpcf7-form-control wpcf7-submit"/></p>
+<div class="wpcf7-response-output wpcf7-display-none"></div></form></div>					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+ 
+
+	
+<div style="margin-bottom:20px;">
+	<script type="text/javascript" src="//vk.com/js/api/openapi.js?125"></script>
+
+	<!-- VK Widget -->
+	<div id="vk_groups"></div>
+	<script type="text/javascript">
+	VK.Widgets.Group("vk_groups", {redesign: 1, mode: 3, width: "260", height: "400", color1: 'FFFFFF', color2: '000000', color3: '5E81A8'}, 53556821);
+	</script>
+</div>
+
+<div class="any-widget-block"><h2>Разделы</h2>		<ul>
+	<li class="cat-item cat-item-11"><a href="http://pro-cod.ru/css" title="Уроки CSS. CSS (англ. Cascading Style Sheets — каскадные таблицы стилей) — формальный язык описания внешнего вида документа, написанного с использованием языка разметки.
+Преимущественно используется как средство описания, оформления внешнего вида веб-страниц, написанных с помощью языков разметки HTML и XHTML">CSS</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="http://pro-cod.ru/drupal" title="В этом разделе будут публиковаться уроки по drupal.">Drupal</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://pro-cod.ru/html">HTML</a>
+</li>
+	<li class="cat-item cat-item-55"><a href="http://pro-cod.ru/javascript">Javascript</a>
+</li>
+	<li class="cat-item cat-item-45"><a href="http://pro-cod.ru/joomla">Joomla</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="http://pro-cod.ru/jquery">JQuery</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://pro-cod.ru/photoshop">Photoshop</a>
+</li>
+	<li class="cat-item cat-item-54"><a href="http://pro-cod.ru/php">PHP</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://pro-cod.ru/wordpress-category" title="В этом разделе будут публиковаться уроки по wordpress">Wordpress</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://pro-cod.ru/%d0%b1%d0%b5%d0%b7-%d1%80%d1%83%d0%b1%d1%80%d0%b8%d0%ba%d0%b8">Без рубрики</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://pro-cod.ru/besplatnye-shablony" title="в этой рубрике будут размещаться бесплатные шаблоны для различных движков.">Бесплатные шаблоны</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://pro-cod.ru/novosti" title="В этом разделе будут публиковаться новости сайта pro-cod.ru.">Новости</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="http://pro-cod.ru/onlajn-instrumenty-dlya-veb-dizajnera">Онлайн инструменты для веб-дизайна</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://pro-cod.ru/raznoe">Разное</a>
+</li>
+	<li class="cat-item cat-item-28"><a href="http://pro-cod.ru/uroki-bootstrap-3-0" title="В этом разделе будут публиковаться уроки по Bootstrap 3.0. Будут показаны примеры по созданию шаблонов, примеры по использованию тэгов и все, все, все что касается Bootstrap и  его возможностей.">Уроки Bootstrap 3.0</a>
+</li>
+	<li class="cat-item cat-item-56"><a href="http://pro-cod.ru/java">Уроки java</a>
+</li>
+	<li class="cat-item cat-item-49"><a href="http://pro-cod.ru/uroki-po-yii-framework-2-0" title="Уроки по Yii framework 2.0 для начинающих">Уроки по Yii framework 2.0</a>
+</li>
+		</ul>
+</div><div class="any-widget-block"><h2>Популярные посты</h2><ul class="wp-most-popular">
+			<li class="post-537posttype-poststatus-publishformat-standardhas-post-thumbnailhentrycategory-uroki-bootstrap-3-0">
+				<a href="http://pro-cod.ru/navbar-uroki-bootstrap-3.html" title="Navbar (Уроки Bootstrap 3)">
+					Navbar (Уроки Bootstrap 3)
+				</a>
+			</li>
+		
+			<li class="post-266posttype-poststatus-publishformat-standardhas-post-thumbnailhentrycategory-uroki-bootstrap-3-0">
+				<a href="http://pro-cod.ru/uroki-bootstrap-3-0-dlya-nachinayushhix-tretij-urok.html" title="Уроки Bootstrap 3.0 для начинающих (Третий урок)">
+					Уроки Bootstrap 3.0 для начинающих (Третий урок)
+				</a>
+			</li>
+		
+			<li class="post-426posttype-poststatus-publishformat-standardhas-post-thumbnailhentrycategory-uroki-bootstrap-3-0">
+				<a href="http://pro-cod.ru/kak-ustanovit-slajder-slider-bootstrap-3-0.html" title="Как установить слайдер (slider) Bootstrap 3.0?">
+					Как установить слайдер (slider) Bootstrap 3.0?
+				</a>
+			</li>
+		
+			<li class="post-349posttype-poststatus-publishformat-standardhas-post-thumbnailhentrycategory-uroki-bootstrap-3-0">
+				<a href="http://pro-cod.ru/uroki-bootstrap-3-0-dlya-nachinayushhix-chetvertyj-urok.html" title="Уроки Bootstrap 3.0 для начинающих (Четвертый урок)">
+					Уроки Bootstrap 3.0 для начинающих (Четвертый урок)
+				</a>
+			</li>
+		
+			<li class="post-239posttype-poststatus-publishformat-standardhas-post-thumbnailhentrycategory-uroki-bootstrap-3-0">
+				<a href="http://pro-cod.ru/uroki-bootstrap-3-0-dlya-nachinayushhix-pervyj-urok.html" title="Уроки Bootstrap 3.0 для начинающих (Первый урок)">
+					Уроки Bootstrap 3.0 для начинающих (Первый урок)
+				</a>
+			</li>
+		</ul></div>	
+<div class="hidden-phone" style="background:#EBEBEB;padding-bottom:10px;margin-bottom:20px;">						
+<h2>Помощь проекту</h2>
+<p style="padding:0px 15px;color:#999;font-size:12px;line-height:14px;">*Учился плохо, допускаю много орфографических и синтаксических ошибок. Увидели ошибку - помогите исправить.</p>
+<!--Орфография-->
+<script async type="text/javascript" src="/orphus/orphus.js"></script>
+<noindex><center><a href="http://orphus.ru" id="orphus" target="_blank" rel="nofollow"><img alt="Система Orphus" src="http://pro-cod.ru/wp-content/themes/procod/images/orphus.gif" border="0" width="257" height="48"/></a></center></noindex>
+</div>
+<div class="help-people"><h2>Помощь населению</h2>			<div class="textwidget"><div style="color:#999;font-size:12px;line-height:14px;margin-bottom:10px;">*  Если вы не можете решить какую-то задачу отправляйте ее мне я постараюсь помочь. Также можете предложить тему для урока.</div>
+
+<div class="accordion" id="accordion2">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<center><a class="accordion-toggle btn btn-lg btn-info" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+				Задать вопрос
+			</a></center>
+		</div>
+		<div id="collapseOne" class="accordion-body collapse">
+			<div class="accordion-inner">
+				<div role="form" class="wpcf7" id="wpcf7-f140-o2" dir="ltr">
+<div class="screen-reader-response"></div>
+<form action="/ubiraem-frontendweb-yii2.html#wpcf7-f140-o2" method="post" class="wpcf7-form" novalidate="novalidate">
+<div style="display: none;">
+<input type="hidden" name="_wpcf7" value="140"/>
+<input type="hidden" name="_wpcf7_version" value="4.6.1"/>
+<input type="hidden" name="_wpcf7_locale" value=""/>
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f140-o2"/>
+<input type="hidden" name="_wpnonce" value="8d906f75fe"/>
+</div>
+<p>Ваше имя (обязательно)<br/>
+    <span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"/></span> </p>
+<p>Ваш E-Mail (обязательно)<br/>
+    <span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false"/></span> </p>
+<p>Тема<br/>
+    <span class="wpcf7-form-control-wrap your-subject"><input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false"/></span> </p>
+<p>Сообщение<br/>
+    <span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="5" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"></textarea></span> </p>
+<div class="wpcf7-form-control-wrap"><div data-sitekey="6LdLDQ0UAAAAABXxDeMv9rqh1KU_aTlwUaipe9MD" class="wpcf7-form-control g-recaptcha wpcf7-recaptcha"></div>
+<noscript>
+	<div style="width: 302px; height: 422px;">
+		<div style="width: 302px; height: 422px; position: relative;">
+			<div style="width: 302px; height: 422px; position: absolute;">
+				<iframe src="https://www.google.com/recaptcha/api/fallback?k=6LdLDQ0UAAAAABXxDeMv9rqh1KU_aTlwUaipe9MD" frameborder="0" scrolling="no" style="width: 302px; height:422px; border-style: none;">
+				</iframe>
+			</div>
+			<div style="width: 300px; height: 60px; border-style: none; bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px; background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+				<textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;">
+				</textarea>
+			</div>
+		</div>
+	</div>
+</noscript>
+</div>
+<p><input type="submit" value="Отправить" class="wpcf7-form-control wpcf7-submit"/></p>
+<div class="wpcf7-response-output wpcf7-display-none"></div></form></div>
+			</div>
+		</div>
+	</div>
+</div></div>
+		</div>	
+
+<div style="text-align:center;margin-top:20px;padding:10px 20px 20px 20px;border:1px solid #ccc;background:#fcfbfb;">
+	<h2 style="background:#961f1f;color:#fff;">Рекомендую</h2>
+	<object id='mySwf' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' width='170' height='250'><param name='src' value='http://cp.beget.ru/banners/new/170x250.swf'/><param name='flashVars' value='id_number=52836'/><embed name='mySwf' src='http://cp.beget.ru/banners/new/170x250.swf' width='170' height='250' flashVars='id_number=52836'/></object>
+	<div style="margin-bottom:20px;"></div>
+	<a href="http://www.insales.ru/signup/7ad70a710" title="Создайте интернет-магазин на InSales"><img alt="Создать интернет магазин на платформе InSales" border="0" height="200" src="http://shop-74860.myinsales.ru//served_assets/banners/200x200_2.gif" width="200"/></a>
+</div>
+
+
+<div style="margin-bottom:20px;margin-top:20px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Адаптивный блок на pro-cod.ru -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8951270406097171" data-ad-slot="6134857162" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>			</div>
+		</div>
+		
+<!-------------------------------------------------------
+=ПРАВЫЙ САЙДБАР
+-------------------------------------------------------->						
+	
+
+		
+	
+﻿	<!-------------------------------------------------------
+	=ФУТЕР
+	-------------------------------------------------------->	
+	<div class="row rubric-block"><div class="col-md-12 rubrics"><h2>Темы</h2><div class="tagcloud"><a href='http://pro-cod.ru/tag/ajax' class='tag-link-15 tag-link-position-1' title='1 запись' style='font-size: 8pt;'>Ajax</a>
+<a href='http://pro-cod.ru/tag/bootstrap' class='tag-link-16 tag-link-position-2' title='2 записи' style='font-size: 13.25pt;'>Bootstrap</a>
+<a href='http://pro-cod.ru/tag/css' class='tag-link-51 tag-link-position-3' title='5 записей' style='font-size: 22pt;'>CSS</a>
+<a href='http://pro-cod.ru/tag/drupal-7' class='tag-link-4 tag-link-position-4' title='1 запись' style='font-size: 8pt;'>Drupal 7</a>
+<a href='http://pro-cod.ru/tag/facebook' class='tag-link-17 tag-link-position-5' title='1 запись' style='font-size: 8pt;'>Facebook</a>
+<a href='http://pro-cod.ru/tag/html' class='tag-link-52 tag-link-position-6' title='2 записи' style='font-size: 13.25pt;'>HTML</a>
+<a href='http://pro-cod.ru/tag/javascript' class='tag-link-26 tag-link-position-7' title='1 запись' style='font-size: 8pt;'>Javascript</a>
+<a href='http://pro-cod.ru/tag/notepad' class='tag-link-20 tag-link-position-8' title='1 запись' style='font-size: 8pt;'>Notepad++</a>
+<a href='http://pro-cod.ru/tag/photoshop' class='tag-link-50 tag-link-position-9' title='1 запись' style='font-size: 8pt;'>Photoshop</a>
+<a href='http://pro-cod.ru/tag/php' class='tag-link-5 tag-link-position-10' title='2 записи' style='font-size: 13.25pt;'>PHP</a>
+<a href='http://pro-cod.ru/tag/plugins-wordpress' class='tag-link-27 tag-link-position-11' title='1 запись' style='font-size: 8pt;'>Plugins Wordpress</a>
+<a href='http://pro-cod.ru/tag/slider' class='tag-link-24 tag-link-position-12' title='1 запись' style='font-size: 8pt;'>Slider</a>
+<a href='http://pro-cod.ru/tag/utf-8' class='tag-link-19 tag-link-position-13' title='1 запись' style='font-size: 8pt;'>UTF-8</a>
+<a href='http://pro-cod.ru/tag/vkontakte' class='tag-link-18 tag-link-position-14' title='1 запись' style='font-size: 8pt;'>Vkontakte</a>
+<a href='http://pro-cod.ru/tag/wordpress-category' class='tag-link-53 tag-link-position-15' title='4 записи' style='font-size: 19.666666666667pt;'>Wordpress</a>
+<a href='http://pro-cod.ru/tag/youtube' class='tag-link-23 tag-link-position-16' title='1 запись' style='font-size: 8pt;'>Youtube</a>
+<a href='http://pro-cod.ru/tag/verstka' class='tag-link-21 tag-link-position-17' title='1 запись' style='font-size: 8pt;'>Верстка</a>
+<a href='http://pro-cod.ru/tag/denver' class='tag-link-10 tag-link-position-18' title='2 записи' style='font-size: 13.25pt;'>Денвер</a>
+<a href='http://pro-cod.ru/tag/dizajn' class='tag-link-22 tag-link-position-19' title='1 запись' style='font-size: 8pt;'>Дизайн</a></div>
+</div></div>	
+		<div class="row rubric-block">
+			<div class="col-md-12 footer">
+				Copyright © 2013 - 2016 Designed by <a class="link-pro" href="http://pro-cod.ru/">Pro-Cod</a>. При копировании материалов сайта<br/>рабочая ссылка на pro-cod.ru обязательна.
+			</div>
+		</div>
+	</div>
+	
+<!-- ngg_resource_manager_marker --><script type='text/javascript' src='http://pro-cod.ru/wp-includes/js/comment-reply.min.js?ver=4.7.2'></script>
+<script type='text/javascript' src='http://pro-cod.ru/wp-includes/js/wp-embed.min.js?ver=4.7.2'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&#038;render=explicit&#038;ver=2.0'></script>
+<script type="text/javascript">
+var recaptchaWidgets = [];
+var recaptchaCallback = function() {
+	var forms = document.getElementsByTagName('form');
+	var pattern = /(^|\s)g-recaptcha(\s|$)/;
+
+	for (var i = 0; i < forms.length; i++) {
+		var divs = forms[i].getElementsByTagName('div');
+
+		for (var j = 0; j < divs.length; j++) {
+			var sitekey = divs[j].getAttribute('data-sitekey');
+
+			if (divs[j].className && divs[j].className.match(pattern) && sitekey) {
+				var params = {
+					'sitekey': sitekey,
+					'theme': divs[j].getAttribute('data-theme'),
+					'type': divs[j].getAttribute('data-type'),
+					'size': divs[j].getAttribute('data-size'),
+					'tabindex': divs[j].getAttribute('data-tabindex')
+				};
+
+				var callback = divs[j].getAttribute('data-callback');
+
+				if (callback && 'function' == typeof window[callback]) {
+					params['callback'] = window[callback];
+				}
+
+				var expired_callback = divs[j].getAttribute('data-expired-callback');
+
+				if (expired_callback && 'function' == typeof window[expired_callback]) {
+					params['expired-callback'] = window[expired_callback];
+				}
+
+				var widget_id = grecaptcha.render(divs[j], params);
+				recaptchaWidgets.push(widget_id);
+				break;
+			}
+		}
+	}
+}
+</script>
+<script type='text/javascript' src='http://pro-cod.ru/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.9b'></script>
+<script type='text/javascript' src='http://pro-cod.ru/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPhp.js?ver=3.0.9b'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://pro-cod.ru/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://pro-cod.ru/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = 2;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+</body>
+</html>
