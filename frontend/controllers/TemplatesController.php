@@ -66,13 +66,23 @@ class TemplatesController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Displays PrettyPhoto.
      *
      * @return mixed
      */
     public function actionPrettyPhoto()
     {
         return $this->render('pretty-photo');
+    }
+
+    /**
+     * Displays PrettyPhoto.
+     *
+     * @return mixed
+     */
+    public function actionModalFeedback()
+    {
+        return $this->render('modal-feedback');
     }
 
     

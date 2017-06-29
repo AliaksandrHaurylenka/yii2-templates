@@ -14,10 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php
     	$menuItems = [
-	        ['label' => 'Фотогалерея prettyPhoto', 'url' => ['/templates/pretty-photo']],
-	        /*['label' => 'Temlates', 'url' => ['/site/templates']],
-	        ['label' => 'About', 'url' => ['/site/about']],
-	        ['label' => 'Contact', 'url' => ['/site/contact']],*/
+	        ['label' => '1. Фотогалерея prettyPhoto', 'url' => ['/templates/pretty-photo']],
+	        ['label' => '2. Модальное окно "ОБАТНАЯ СВЯЗЬ"', 'url' => ['/templates/modal-feedback']],
+	        //['label' => 'About', 'url' => ['/site/about']],
+	        //['label' => 'Contact', 'url' => ['/site/contact']],
 	    ];
 
 	    echo Nav::widget([
