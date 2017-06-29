@@ -36,9 +36,9 @@ if($model->load(Yii::$app->request->post())){
       <?//= debug($model); ?>
         
         <!--НАЧАЛО ФОРМЫ-->
-        <?php Pjax::begin([]); ?>
-        	<?= Alert::widget() ?>    
-	        <?php $form = ActiveForm::begin(['options' => ['data' => ['pjax' => true]]]) ?>
+        <?php Pjax::begin([]); //для того, чтобы модальное окно оставалось открытым при отправке письма ?>
+        	<?= Alert::widget(); //выводит сообщение об удачной, либо не удачной отправке письма ?>
+	        <?php $form = ActiveForm::begin(['options' => ['data' => ['pjax' => true]]]);//'data' => ['pjax' => true] для работы Pjax ?>
 	          <div class="form-group">
 	            <?= $form->field($model, 'name')->input('text')?>
 	          </div>
@@ -58,7 +58,7 @@ if($model->load(Yii::$app->request->post())){
 	            ?>
           	</div>
 	          <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary'])?>
-	          <?//= Html::resetButton('Очистить', ['class' => 'btn btn-primary'])?>
+	          <?= Html::resetButton('Очистить', ['class' => 'btn btn-success reset'])?>
 	        <?php ActiveForm::end() ?>
         <?php Pjax::end(); ?>
         <!--КОНЕЦ ФОРМЫ-->

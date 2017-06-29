@@ -14,7 +14,7 @@ class ModalFeedbackForm extends Model
 		public $subject;
 		public $text;
 		public $verifyCode;
-		public $toEmail = ['mail@sport-kostukovka.by']; //массив почт получателей
+		public $toEmail = ['mail@sport-kostukovka.by', 'goric0312@mail.ru']; //массив почт получателей
 		
 
 		public function attributeLabels()

@@ -46,6 +46,21 @@ return [
                 '<action>' => 'site/<action>',
             ],
         ],
+
+        //для работы почты
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,//выставляем в true если хотим тестировать отправку
+            //тестируемые отправленные письма попадают в frontend/runtime/mail
+            /*'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'aliaksandr.haurylenka@gmail.com',
+                'password' => 'integralrimmana',
+                'port' => '465',
+                'encryption' => 'ssl',
+            ],*/
+        ],
         
     ],
     'params' => $params,
