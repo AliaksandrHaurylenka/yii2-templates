@@ -58,7 +58,7 @@ if($model->load(Yii::$app->request->post())){
 	            ?>
           	</div>
 	          <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary'])?>
-	          <?= Html::resetButton('Очистить', ['class' => 'btn btn-success reset'])?>
+	          <?//= Html::resetButton('Очистить', ['class' => 'btn btn-success reset'])?>
 	        <?php ActiveForm::end() ?>
         <?php Pjax::end(); ?>
         <!--КОНЕЦ ФОРМЫ-->

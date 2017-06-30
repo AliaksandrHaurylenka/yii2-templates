@@ -27,7 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <ol style="list-style-type: decimal;">
         <li>Из директории frontend\components копируем ModalFeedbackWidget.php и вставляем в такую же директориию проекта;</li>
         <li>Из директории frontend\components\views копируем modal-feedback.php и вставляем в такую же директориию проекта;</li>
-        <li>В виде, где будет использоваться модальное окно, вставляем код, обернув в php-теги вывода:
+        <li>Из директории frontend\models копируем ModalFeedbackForm.php и вставляем в такую же директориию проекта;</li>
+        <li>В виде, где будет использоваться модальное окно, вставляем код, обернув его в php-теги вывода содержимого:
             <pre>
                 <code>
         ModalFeedbackWidget::widget();
