@@ -40,8 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <li>В этом же виде прописываем пространство имен: use frontend\components\ModalFeedbackWidget;</li>
         <li>В виде модального окна: frontend\components\views\modal-feedback.php, создаем необходимую форму обратной связи</li>
         <li>
-            Для работы <a href="https://nix-tips.ru/yii2-api-guides/guide-ru-tutorial-mailing.html" target="_blank" style="text-decoration: underline">почты</a>
-            указанную первую строку кода добавляем в frontend/config/main.php
+            Для работы почты
+            указанную первую строку кода (ссылки: <a href="https://nix-tips.ru/yii2-api-guides/guide-ru-tutorial-mailing.html" target="_blank" style="text-decoration: underline">почта на yii2</a>) добавляем во frontend/config/main.php
         </li>
         <li>Также по настройке почты можно <a href="https://webformyself.com/yii2-otpravka-pochty/" target="_blank" style="text-decoration: underline">почитать</a></li>
     </ol>
