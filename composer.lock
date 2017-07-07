@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c30b2d984f4517a2d750f2de700d2beb",
-    "content-hash": "64818aadf625469736a9b742022676be",
+    "hash": "0ee46f4eb1b1a40ca38c5911048849af",
+    "content-hash": "8f4f675660ed40551d068fac0e3840d5",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -371,6 +371,56 @@
                 "yii2"
             ],
             "time": "2015-03-06 22:48:44"
+        },
+        {
+            "name": "pjhl/yii2-multilanguage",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pjhl/yii2-multilanguage.git",
+                "reference": "8664aaae1b0185a614b5a36cd4175bccdb7c9abe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pjhl/yii2-multilanguage/zipball/8664aaae1b0185a614b5a36cd4175bccdb7c9abe",
+                "reference": "8664aaae1b0185a614b5a36cd4175bccdb7c9abe",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "pjhl\\multilanguage\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pjhl",
+                    "email": "pjhl.coder@gmail.com",
+                    "homepage": "https://github.com/pjhl/yii2-multilanguage"
+                }
+            ],
+            "description": "Multi Language support for Yii2 Framework.",
+            "homepage": "https://github.com/pjhl/yii2-multilanguage",
+            "keywords": [
+                "i18n",
+                "lang",
+                "language",
+                "lingual",
+                "multi",
+                "translate",
+                "yii2",
+                "локализация",
+                "мультиязычность",
+                "перевод"
+            ],
+            "time": "2016-06-14 18:14:40"
         },
         {
             "name": "swiftmailer/swiftmailer",

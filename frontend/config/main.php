@@ -11,10 +11,14 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'language'   => 'en',//для мультиязычного сайта
+    'sourceLanguage' => 'en',//для мультиязычного сайта
+    'on beforeAction' => ['\pjhl\multilanguage\Start', 'run'],//для мультиязычного сайта
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
             'baseUrl' => '',
+            'class' => 'pjhl\multilanguage\components\AdvancedRequest',//для мультиязычного сайта
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -41,6 +45,7 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'class' => 'pjhl\multilanguage\components\AdvancedUrlManager',//для мультиязычного сайта
             'rules' => [
                 '' => 'site/index',                                
                 '<action>' => 'site/<action>',

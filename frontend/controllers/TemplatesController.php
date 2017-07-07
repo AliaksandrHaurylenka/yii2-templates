@@ -24,13 +24,24 @@ class TemplatesController extends Controller
     }
 
     /**
-     * Displays PrettyPhoto.
+     * Displays ModalFeedback.
      *
      * @return mixed
      */
     public function actionModalFeedback()
     {
         return $this->render('modal-feedback');
+    }
+
+
+    /**
+     * Displays Multi Language.
+     *
+     * @return mixed
+     */
+    public function actionMultiLanguage()
+    {
+        return $this->render('multi-language');
     }
 
     

@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     	$menuItems = [
 	        ['label' => '1. Фотогалерея prettyPhoto', 'url' => ['/templates/pretty-photo']],
 	        ['label' => '2. Модальное окно "ОБАТНАЯ СВЯЗЬ"', 'url' => ['/templates/modal-feedback']],
-	        //['label' => 'About', 'url' => ['/site/about']],
+	        ['label' => '3. Multi Language', 'url' => ['/templates/multi-language']],
 	        //['label' => 'Contact', 'url' => ['/site/contact']],
 	    ];
 
