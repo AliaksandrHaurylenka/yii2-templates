@@ -1,0 +1,4 @@
+При загрузке сайта на сервер необходимо:
+1. в  файлах frontend/web/index.php и backend/web/index.php закоментировать строку "require(__DIR__ . '/../../common/config/main-local.php')";
+2. в файле common/config/main.php прописать соединения с БД хостинга;
+3. Должно работать!!!
