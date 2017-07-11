@@ -43,7 +43,47 @@ $this->params['breadcrumbs'][] = $this->title;
             Для работы <a href="https://nix-tips.ru/yii2-api-guides/guide-ru-tutorial-mailing.html" target="_blank" style="text-decoration: underline">почты</a>
             указанную первую строку кода добавляем в frontend/config/main.php
         </li>
-        <li>Также по настройке почты можно <a href="https://webformyself.com/yii2-otpravka-pochty/" target="_blank" style="text-decoration: underline">почитать</a></li>
+        <li>Также по настройке почты можно почитать <a href="https://webformyself.com/yii2-otpravka-pochty/" target="_blank" style="text-decoration: underline">здесь</a>. Особое внимание обратить на метод 'transport' при отправке smtp-сообщений, что <b>'username' => '<i style="color: red">oc.mcdir@yandex.ru</i>',</b> и <b>setFrom(['<i style="color: red">oc.mcdir@yandex.ru</i>' => $this->name])</b> имеют одинаковые адреса!!!
+            <pre>
+                <code>
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.yandex.ru',
+                'username' => 'oc.mcdir@yandex.ru',
+                'password' => 'oc_2017',
+                'port' => '465',
+                'encryption' => 'ssl',
+            ],
+        ],
+                </code>
+            </pre>
+
+            <pre>
+                <code>
+            public function contact($email)
+            {
+                if ($this->validate()) {
+                    Yii::$app->mailer->compose()
+                        ->setTo($email)
+                        ->setFrom(['oc.mcdir@yandex.ru' => $this->name])
+                        ->setSubject($this->subject)
+                        ->setTextBody($this->body)
+                        ->send();
+
+                    return true;
+                }
+                return false;
+            }
+                </code>
+            </pre>
+
+        </li>
     </ol>
 
 </div>
