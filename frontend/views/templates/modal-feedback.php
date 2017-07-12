@@ -43,7 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
             Для работы почты
             указанную первую строку кода (ссылки: <a href="https://nix-tips.ru/yii2-api-guides/guide-ru-tutorial-mailing.html" target="_blank" style="text-decoration: underline">почта на yii2</a>) добавляем во frontend/config/main.php
         </li>
-        <li>Также по настройке почты можно почитать <a href="https://webformyself.com/yii2-otpravka-pochty/" target="_blank" style="text-decoration: underline">здесь</a>. Особое внимание обратить на метод 'transport' при отправке smtp-сообщений, что <b>'username' => '<i style="color: red">oc.mcdir@yandex.ru</i>',</b> и <b>setFrom(['<i style="color: red">oc.mcdir@yandex.ru</i>' => $this->name])</b> имеют одинаковые адреса!!!
+        <li>Также по настройке почты можно почитать <a href="https://webformyself.com/yii2-otpravka-pochty/" target="_blank" style="text-decoration: underline">здесь</a>. <span style="color: red">ВНИМАНИЕ!!!</span> <b>Данные правила описаны для рассылки сообщений: например со своего сайта.</b><br>
+        Особое внимание обратить на метод 'transport' при отправке smtp-сообщений, что<br>
+        <b>'username' => '<i style="color: red">oc.mcdir@yandex.ru</i>',</b> и<br><b>setFrom(['<i style="color: red">oc.mcdir@yandex.ru</i>' => $this->name])</b><br>имеют одинаковые адреса!!!
             <pre>
                 <code>
         'mailer' => [
@@ -82,7 +84,10 @@ $this->params['breadcrumbs'][] = $this->title;
             }
                 </code>
             </pre>
-
+        </li>
+        <li>
+            Для формы обратной связи можно почитать <a href="http://www.webapplex.ru/forma-obratnoj-svyazi-na-yii-2.x" target="_blank">здесь</a>.<br>
+            Метод 'transport' в данном случае не указывается и почта должна отправляться с помощью функции PHP <a href="http://php.net/manual/ru/function.mail.php", target="_blank">mail()</a>
         </li>
     </ol>
 

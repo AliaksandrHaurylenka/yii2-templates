@@ -12,6 +12,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\UploadForm;
 
 /**
  * Site controller
@@ -115,20 +116,41 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+        /**
+         * функция ОБРАТНОЙ СВЯЗИ
+         * 1. присваиваем переменной класс модели ContactForm
+         * 2. если письмо отправлено методом post
+         *      если заполнены все данные (см. метод sendEmail) письмо отправляется, выводится сообщение об успехе
+         *          и перезагружается страница (return $this->refresh();)
+         *      иначе выводится сообщение об неудаче
+         */
         $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
-            }
-
+        if ($model->load(Yii::$app->request->post())) {
+          if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
+            //debug($model);
             return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
+          } else {
+            Yii::$app->session->setFlash('error', 'Внимание! Ваше письмо по каким-то причинам не отправлено!!!');
+          }
         }
+
+
+
+        $model_upload = new UploadForm();
+        if (Yii::$app->request->isPost) {
+            $model_upload->file_for_dowland = UploadedFile::getInstances($model_upload, 'file_for_dowland');
+            if ($model_upload->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+
+
+        return $this->render('contact', [
+          'model' => $model,
+          'model_upload' => $model_upload,
+        ]);
     }
 
     /**

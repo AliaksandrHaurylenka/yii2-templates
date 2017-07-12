@@ -55,15 +55,18 @@ return [
         //для работы почты
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => false,//выставляем в true если хотим тестировать отправку
+            'messageConfig' => [
+                'charset' => 'UTF-8',
+            ],
+            'useFileTransport' => true,//выставляем в true если хотим тестировать отправку
             //тестируемые отправленные письма попадают в frontend/runtime/mail
             /*'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.gmail.com',
-                'username' => 'aliaksandr.haurylenka@gmail.com',
+                'host' => 'smtp.mail.ru',
+                'username' => 'goric0312@mail.ru',
                 'password' => 'integralrimmana',
-                'port' => '465',
-                'encryption' => 'ssl',
+                'port' => '587',
+                'encryption' => 'tls',
             ],*/
         ],
         

@@ -14,6 +14,7 @@ class ContactForm extends Model
     public $email;
     public $subject;
     public $body;
+    public $file_for_dowland;
     public $verifyCode;
 
 
@@ -27,6 +28,8 @@ class ContactForm extends Model
             [['name', 'email', 'subject', 'body'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
+            //file size, maxFiles
+            ['file_for_dowland', 'file', 'extensions' => ['png', 'jpg', 'gif', 'pdf'], 'maxSize' => 1024*1024*5],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];
@@ -48,7 +51,7 @@ class ContactForm extends Model
      * @param string $email the target email address
      * @return bool whether the email was sent
      */
-    public function sendEmail($email)
+    /*public function sendEmail($email)
     {
         return Yii::$app->mailer->compose()
             ->setTo($email)
@@ -56,5 +59,21 @@ class ContactForm extends Model
             ->setSubject($this->subject)
             ->setTextBody($this->body)
             ->send();
+    }*/
+    public function sendEmail($email)
+    {
+        if ($this->validate()) {
+          Yii::$app->mailer->compose()
+            ->setTo($email)
+            ->setFrom([$this->email => $this->name])
+            ->setReplyTo([$this->email => $this->name])
+            ->setSubject($this->subject)
+            ->setTextBody($this->body)
+            ->attach($this->file_for_dowland)
+            ->send();
+          return true;
+        } else {
+          return false;
+        }
     }
 }
