@@ -20,14 +20,11 @@ if ($model->load(Yii::$app->request->post())) {
   }
 }
 
-$model_upload = new UploadForm();
+/*$model_upload = new UploadForm();
 if (Yii::$app->request->isPost) {
     $model_upload->file_for_dowland = UploadedFile::getInstances($model_upload, 'file_for_dowland');
-    if ($model_upload->upload()) {
-        // file is uploaded successfully
-        return;
-    }
-}
+    if ($model_upload->upload()) {}
+}*/
 //debug($model);
 ?>
 

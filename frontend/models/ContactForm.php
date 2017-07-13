@@ -65,15 +65,38 @@ class ContactForm extends Model
         if ($this->validate()) {
           Yii::$app->mailer->compose()
             ->setTo($email)
+            //->setFrom(['bspgomel@gmail.com' => 'Письмо послано с сайта БелСтеклоПром'])
             ->setFrom([$this->email => $this->name])
             ->setReplyTo([$this->email => $this->name])
             ->setSubject($this->subject)
             ->setTextBody($this->body)
-            ->attach($this->file_for_dowland)
+            //->attach($this->file_for_dowland)
             ->send();
           return true;
         } else {
           return false;
         }
     }
+
+
+   /* public function sendEmail($email)
+    {
+      if ($this->validate()) {
+        Yii::$app->mailer->compose([
+            'html' => 'views/message-html',
+            'text' => 'views/message-text',
+        ])
+            ->setTo($email)
+            //->setFrom(['bspgomel@gmail.com' => 'Письмо послано с сайта БелСтеклоПром'])
+            ->setFrom([$this->email => $this->name])
+            ->setReplyTo([$this->email => $this->name])
+            ->setSubject($this->subject)
+            ->setTextBody($this->body)
+            //->setHtmlBody($this->body)
+            ->send();
+        return true;
+      } else {
+        return false;
+      }
+    }*/
 }

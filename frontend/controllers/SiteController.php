@@ -12,7 +12,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-use frontend\models\UploadForm;
+//use frontend\models\UploadForm;
 
 /**
  * Site controller
@@ -137,19 +137,16 @@ class SiteController extends Controller
 
 
 
-        $model_upload = new UploadForm();
+        /*$model_upload = new UploadForm();
         if (Yii::$app->request->isPost) {
             $model_upload->file_for_dowland = UploadedFile::getInstances($model_upload, 'file_for_dowland');
-            if ($model_upload->upload()) {
-                // file is uploaded successfully
-                return;
-            }
-        }
+            if ($model_upload->upload()) {}
+        }*/
 
 
         return $this->render('contact', [
           'model' => $model,
-          'model_upload' => $model_upload,
+          //'model_upload' => $model_upload,
         ]);
     }
 

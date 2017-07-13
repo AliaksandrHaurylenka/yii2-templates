@@ -1,6 +1,6 @@
 <?php
 return [
-    'adminEmail' => 'aliaksandr.haurylenak@gmail.ru',
+    'adminEmail' => 'aliaksandr.haurylenka@gmail.com',
 
     'languages' => 
     [
