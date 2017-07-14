@@ -5,4 +5,4 @@
 /** @var $paramExample string */
 
 ?>
-<h4>Здравствуйте <?= $this->params['adminEmail'] ?></h4>
+<h4>Hello <?= $this->params['adminEmail'] ?></h4>

@@ -15,7 +15,7 @@ class ContactForm extends Model
     public $subject;
     public $body;
     public $file_for_dowland;
-    public $verifyCode;
+    //public $verifyCode;
 
 
     /**
@@ -31,7 +31,7 @@ class ContactForm extends Model
             //file size, maxFiles
             ['file_for_dowland', 'file', 'extensions' => ['png', 'jpg', 'gif', 'pdf'], 'maxSize' => 1024*1024*5],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+            //['verifyCode', 'captcha'],
         ];
     }
 
@@ -60,7 +60,7 @@ class ContactForm extends Model
             ->setTextBody($this->body)
             ->send();
     }*/
-    public function sendEmail($email)
+    /*public function sendEmail($email)
     {
         if ($this->validate()) {
           Yii::$app->mailer->compose()
@@ -76,15 +76,15 @@ class ContactForm extends Model
         } else {
           return false;
         }
-    }
+    }*/
 
 
-   /* public function sendEmail($email)
+    public function sendEmail($email)
     {
       if ($this->validate()) {
         Yii::$app->mailer->compose([
-            'html' => 'views/message-html',
-            'text' => 'views/message-text',
+            //'html' => 'views/message-html',
+            //'text' => 'views/message-text',
         ])
             ->setTo($email)
             //->setFrom(['bspgomel@gmail.com' => 'Письмо послано с сайта БелСтеклоПром'])
@@ -92,11 +92,11 @@ class ContactForm extends Model
             ->setReplyTo([$this->email => $this->name])
             ->setSubject($this->subject)
             ->setTextBody($this->body)
-            //->setHtmlBody($this->body)
+            ->setHtmlBody($this->body.'<br>'.'<p style="font-weight: bold;">Мой телефон: '.$this->email.'</p>')
             ->send();
         return true;
       } else {
         return false;
       }
-    }*/
+    }
 }

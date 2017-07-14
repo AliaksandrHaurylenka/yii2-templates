@@ -15,7 +15,7 @@ use yii\helpers\Html;
 </head>
 <body>
     <?php $this->beginBody() ?>
-    <h4>Здравствуйте <?= $this->params['adminEmail'] ?></h4>
+    <h4>Hello, <?= Yii::$app->params['adminEmail'] ?></h4>
     <?= $content ?>
     <?php $this->endBody() ?>
 </body>
