@@ -26,11 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'email') ?>
 
+                <?= $form->field($model, 'phone')
+                    ->textInput(['placeholder' => "Формат: +375(29)348-76-88"]) ?>
+
                 <?= $form->field($model, 'subject') ?>
 
                 <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
-                <?//= $form->field($model, 'verifyCode')->widget(Captcha::className(), ['template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',]) ?>
+                <? //= $form->field($model, 'file_for_dowland[]')->fileInput(['multiple' => true]) ?>
+                <?//= $form->field($model, 'file_for_dowland')->fileInput() ?>
+
+                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(),
+                    ['template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',])
+                    ->hint('Hint: click on the equation to refresh')
+                ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>

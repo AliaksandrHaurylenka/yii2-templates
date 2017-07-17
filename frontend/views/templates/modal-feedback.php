@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <ol style="list-style-type: decimal;">
         <li>Из директории frontend\components копируем ModalFeedbackWidget.php и вставляем в такую же директориию проекта;</li>
         <li>Из директории frontend\components\views копируем modal-feedback.php и вставляем в такую же директориию проекта;</li>
-        <li>Из директории frontend\models копируем ModalFeedbackForm.php и вставляем в такую же директориию проекта;</li>
+        <li>Из директории frontend\models копируем ContactForm.php и вставляем в такую же директориию проекта;</li>
         <li>В виде, где будет использоваться модальное окно, вставляем код, обернув его в php-теги вывода содержимого:
             <pre>
                 <code>
@@ -88,6 +88,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <li>
             Для формы обратной связи можно почитать <a href="http://www.webapplex.ru/forma-obratnoj-svyazi-na-yii-2.x" target="_blank">здесь</a>.<br>
             Метод 'transport' в данном случае не указывается и почта должна отправляться с помощью функции PHP <a href="http://php.net/manual/ru/function.mail.php", target="_blank">mail()</a>
+        </li>
+        <li>Капча
+            <ul>
+                <li><a href="http://2coders.ru/chislovaya-kapcha-v-yii2/" target="_blank">Числовая капча</a></li>
+                <li><a href="http://dbhelp.ru/mathematics-captcha/page/" target="_blank">Математическая капча</a></li>
+                <li><a href="https://github.com/hreitsma/yii2-simplemath-captcha" target="_blank">Математическая капча с GitHub</a></li>
+            </ul>
         </li>
     </ol>
 
