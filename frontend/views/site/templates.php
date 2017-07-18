@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        ['label' => '1. Фотогалерея prettyPhoto', 'url' => ['/templates/pretty-photo']],
 	        ['label' => '2. Модальное окно "ОБАТНАЯ СВЯЗЬ"', 'url' => ['/templates/modal-feedback']],
 	        ['label' => '3. Multi Language', 'url' => ['/templates/multi-language']],
-	        //['label' => 'Contact', 'url' => ['/site/contact']],
+	        ['label' => '4. GridView', 'url' => ['/templates/grid-view']],
 	    ];
 
 	    echo Nav::widget([

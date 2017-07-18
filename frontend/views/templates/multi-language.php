@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <code><?= __FILE__ ?></code>
 
-    <h3><a href="https://github.com/pjhl/yii2-multilanguage/blob/master/README.ru.md" target="_blank">Документация</a></h3>
+    <h3><a href="https://github.com/pjhl/yii2-multilanguage/blob/master/README.ru.md" target="_blank">Документация №1</a> (не разобрался)</h3>
 
 
     <span>Переключатели языка: </span>
@@ -38,6 +38,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque doloremque impedit sint! Enim laborum, minima! Amet blanditiis doloribus ea eligendi illum, in maiores modi nostrum perferendis quisquam ullam, voluptate voluptatem.</p>
 
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium blanditiis consectetur cumque eligendi, illo maiores neque nihil officia quos sequi sint vitae voluptate. Aut exercitationem natus quibusdam quidem unde voluptate?</p>
+
+    <hr>
+
+    <h3><a href="http://atoumus.github.io/yii2-i18n.html" target="_blank">Документация №2</a> (реализация сайта БелСтеклоПром)</h3>
+    <h4>Нюансы:</h4>
+    <ol>
+        <li>'<code>&#39;basePath&#39; =&gt; &#39;@app/messages&#39;</code> - папка в папке frontend</li>
+        <li></li>
+    </ol>
 
 
 </div>

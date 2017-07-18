@@ -42,6 +42,16 @@ class TemplatesController extends Controller
         return $this->render('multi-language');
     }
 
+    /**
+     * Displays GridView.
+     *
+     * @return mixed
+     */
+    public function actionGridView()
+    {
+        return $this->render('grid-view');
+    }
+
     
 
 
