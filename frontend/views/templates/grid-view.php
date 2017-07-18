@@ -26,6 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	]);
 	echo GridView::widget([
 	    'dataProvider' => $dataProvider,
+        'tableOptions' => [
+            'class' => 'table table-striped table-bordered'
+        ],
 	]);
 ?>
 
