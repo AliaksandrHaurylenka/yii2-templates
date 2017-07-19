@@ -39,6 +39,7 @@ AppAsset::register($this);
         ['label' => 'Temlates', 'url' => ['/site/templates']],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
+        //['label' => 'Form', 'url' => ['/site/form']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];

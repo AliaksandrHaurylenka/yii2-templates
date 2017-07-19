@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-5">
-            <!-- <?php $form //= ActiveForm::begin('options' => ['enctype' => 'multipart/form-data'], ['id' => 'contact-form']); ?> -->
+            <!-- <?php //$form //= ActiveForm::begin('options' => ['enctype' => 'multipart/form-data'], ['id' => 'contact-form']); ?> -->
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'id' => 'contact-form']]); ?>
 
                 <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
@@ -34,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
-                <?= $form->field($model, 'file_for_dowland[]')->fileInput(['multiple' => true]) ?>
+<!--                --><?//= $form->field($model, 'file_for_dowland[]')->fileInput(['multiple' => true]) ?>
+            <?= $form->field($model, 'file')->fileInput() ?>
                 <?//= $form->field($model, 'file_for_dowland')->fileInput() ?>
 
                 <?= $form->field($model, 'verifyCode')->widget(Captcha::className(),

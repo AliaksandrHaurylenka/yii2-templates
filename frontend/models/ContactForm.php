@@ -16,7 +16,7 @@ class ContactForm extends Model
     public $phone;
     public $subject;
     public $body;
-    public $file_for_dowland;//прикрепить файл
+    public $file;//прикрепить файл
     public $verifyCode;
     //можно указать здесь получателей
     //public $toEmail = ['goric0312@mail.ru']; //массив почт получателей
@@ -41,7 +41,8 @@ class ContactForm extends Model
             [['name', 'body', 'subject'], 'trim'],
 
             //file size, maxFiles
-            ['file_for_dowland', 'file', 'extensions' => ['png', 'jpg', 'gif', 'pdf'], 'maxSize' => 1024*1024*5],
+            //[['file'], 'file', 'extensions' => ['png', 'jpg', 'gif', 'pdf'], 'maxSize' => 1024*1024*5],
+            [['file'], 'file'],
 
             //пользовательское правило
             //['name', 'myRules'],
@@ -127,7 +128,7 @@ class ContactForm extends Model
                 .$this->email.'</p>'
             )
             //загрузка файла
-            ->attach($this->file_for_dowland->tempName)
+            //->attach($this->file->tempName)
             //->attach($model->imageFile->tempName);
 
             ->send();

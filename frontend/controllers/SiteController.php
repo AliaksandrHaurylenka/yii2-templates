@@ -13,7 +13,6 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-//use frontend\models\UploadForm;
 
 /**
  * Site controller
@@ -144,12 +143,10 @@ class SiteController extends Controller
 
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post())) {
+            $model->file = UploadedFile::getInstances($model, 'file');
+            $model->file->saveAs('attach/' . $model->file->baseName . "." . $model->file->extensions);//прикрепление файла к сообщению
           if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-
-            $form->file_for_dowland = UploadedFile::getInstances($form, 'file_for_dowland');
-            $form->file_for_dowland->saveAs('attach/' . $form->file_for_dowland->baseName . "." . $form->file_for_dowland->extensions);//прикрепление файла к сообщению
             Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
-            //debug($model);
             return $this->refresh();
           } else {
             Yii::$app->session->setFlash('error', 'Внимание! Ваше письмо по каким-то причинам не отправлено!!!');
