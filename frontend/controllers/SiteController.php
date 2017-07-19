@@ -7,6 +7,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\UploadedFile;//прикрепление файлов
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
@@ -130,9 +131,23 @@ class SiteController extends Controller
          *          и перезагружается страница (return $this->refresh();)
          *      иначе выводится сообщение об неудаче
          */
+        /*$model = new ContactForm();
+        if ($model->load(Yii::$app->request->post())) {
+          if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
+            //debug($model);
+            return $this->refresh();
+          } else {
+            Yii::$app->session->setFlash('error', 'Внимание! Ваше письмо по каким-то причинам не отправлено!!!');
+          }
+        }*/
+
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post())) {
           if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+
+            $form->file_for_dowland = UploadedFile::getInstances($form, 'file_for_dowland');
+            $form->file_for_dowland->saveAs('attach/' . $form->file_for_dowland->baseName . "." . $form->file_for_dowland->extensions);//прикрепление файла к сообщению
             Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
             //debug($model);
             return $this->refresh();
