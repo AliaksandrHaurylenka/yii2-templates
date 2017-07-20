@@ -18,7 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
 	        ['label' => '2. Модальное окно "ОБАТНАЯ СВЯЗЬ"', 'url' => ['/templates/modal-feedback']],
 	        ['label' => '3. Multi Language', 'url' => ['/templates/multi-language']],
 	        ['label' => '4. GridView', 'url' => ['/templates/grid-view']],
-            ['label' => '5. Form', 'url' => ['/templates/form']],
+          ['label' => '5. Form', 'url' => ['/templates/form']],
+          ['label' => '6. Загрузка файлов', 'url' => ['/templates/upload-form']],
 	    ];
 
 	    echo Nav::widget([

@@ -1,11 +1,9 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\UploadForm;
 use Yii;
 use yii\web\Controller;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-
 use yii\web\UploadedFile;//прикрепление файлов
 use frontend\models\MyForm;
 
@@ -38,23 +36,53 @@ class TemplatesController extends Controller
     }
 
     /**
-     * Displays ModalFeedback.
+     * Displays Form.
      *
      * @return mixed
      */
     public function actionForm()
     {
         $model = new MyForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->file = UploadedFile::getInstances($model, 'file');
-            $model->file
-                ->saveAs(
-                    'attach/' . $model->file->baseName . '.' . $model->file->extensions,
-                    ['deleteTempFile' => true]);//прикрепление файла к сообщению
+        if (Yii::$app->request->isPost) {
+          $model->file = UploadedFile::getInstance($model, 'file');
+          if ($model->upload()) {
+            // file is uploaded successfully
+            //return echo 'Файл успешно загружен';
+          }
         }
 
         return $this->render('form', compact('model'));
     }
+
+  /**
+   * Displays Form.
+   *
+   * @return mixed
+   */
+  public function actionUploadForm()
+  {
+    $model = new UploadForm();
+
+    //для одног файла
+    /*if (Yii::$app->request->isPost) {
+      $model->file_load = UploadedFile::getInstance($model, 'file_load');
+      if ($model->upload()) {
+        // file is uploaded successfully
+        //return echo 'Файл успешно загружен';
+      }
+    }*/
+
+    //для нескольких файлов
+    if (Yii::$app->request->isPost) {
+      $model->file_load = UploadedFile::getInstances($model, 'file_load');
+      if ($model->upload()) {
+        // file is uploaded successfully
+        //return echo 'Файл успешно загружен';
+      }
+    }
+
+    return $this->render('upload-form', compact('model'));
+  }
 
 
     /**
