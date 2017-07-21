@@ -13,6 +13,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\UploadForm;
 
 /**
  * Site controller
@@ -122,6 +123,16 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+      /*$model_load = new UploadForm();
+      //для нескольких файлов
+      if (Yii::$app->request->isPost) {
+        $model_load->file_load = UploadedFile::getInstances($model_load, 'file_load');
+        if ($model_load->upload()) {
+          // file is uploaded successfully
+          //return echo 'Файл успешно загружен';
+        }
+      }*/
+
         /**
          * функция ОБРАТНОЙ СВЯЗИ
          * 1. присваиваем переменной класс модели ContactForm
@@ -130,21 +141,12 @@ class SiteController extends Controller
          *          и перезагружается страница (return $this->refresh();)
          *      иначе выводится сообщение об неудаче
          */
-        /*$model = new ContactForm();
-        if ($model->load(Yii::$app->request->post())) {
-          if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
-            //debug($model);
-            return $this->refresh();
-          } else {
-            Yii::$app->session->setFlash('error', 'Внимание! Ваше письмо по каким-то причинам не отправлено!!!');
-          }
-        }*/
-
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post())) {
-            $model->file = UploadedFile::getInstances($model, 'file');
-            $model->file->saveAs('attach/' . $model->file->baseName . "." . $model->file->extensions);//прикрепление файла к сообщению
+              $model->file_load = UploadedFile::getInstance($model, 'file_load');
+              $message = Yii::$app->mailer->compose()->attach($model->file_load->tempName);
+            //$model->file_load = UploadedFile::getInstances($model, 'file_load');
+            //$model->file_load->saveAs('attach/' . $model->file->baseName . "." . $model->file->extensions);//прикрепление файла к сообщению
           if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
             return $this->refresh();
@@ -154,18 +156,10 @@ class SiteController extends Controller
         }
 
 
-
-        /*$model_upload = new UploadForm();
-        if (Yii::$app->request->isPost) {
-            $model_upload->file_for_dowland = UploadedFile::getInstances($model_upload, 'file_for_dowland');
-            if ($model_upload->upload()) {}
-        }*/
-
-
-        return $this->render('contact', [
-          'model' => $model,
-          //'model_upload' => $model_upload,
-        ]);
+        return $this->render('contact', compact('model', 'message'
+          //'model' => $model,
+          //'model_load' => $model_load,
+        ));
     }
 
     /**

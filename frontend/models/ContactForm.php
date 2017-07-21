@@ -4,6 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
+use yii\web\UploadedFile;
 
 /**
  * ContactForm is the model behind the contact form.
@@ -16,7 +17,10 @@ class ContactForm extends Model
     public $phone;
     public $subject;
     public $body;
-    public $file;//прикрепить файл
+    /**
+     * @var UploadedFile[]
+     */
+    public $file_load;//прикрепить файл
     public $verifyCode;
     //можно указать здесь получателей
     //public $toEmail = ['goric0312@mail.ru']; //массив почт получателей
@@ -41,8 +45,8 @@ class ContactForm extends Model
             [['name', 'body', 'subject'], 'trim'],
 
             //file size, maxFiles
-            //[['file'], 'file', 'extensions' => ['png', 'jpg', 'gif', 'pdf'], 'maxSize' => 1024*1024*5],
-            [['file'], 'file'],
+            [['file_load'], 'file', 'extensions' => ['png', 'jpg', 'gif', 'pdf'], 'maxSize' => 1024*1024*5, 'maxFiles' => 4],
+            //[['file'], 'file'],
 
             //пользовательское правило
             //['name', 'myRules'],
@@ -83,6 +87,20 @@ class ContactForm extends Model
         ];
     }
 
+  /*public function upload()
+  {
+    //для загрузки нескольких файлов
+    //значение вверху должно быть @var UploadedFile[]
+    if ($this->validate()) {
+      foreach ($this->file_load as $file) {
+        $file->saveAs('attach/' . $file->baseName . '.' . $file->extension);
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }*/
+
     /**
      * Sends an email to the specified email address using the information collected by this model.
      *
@@ -103,13 +121,13 @@ class ContactForm extends Model
 
             //подходит для рассылки писем
             //->setFrom([Yii::$app->params['supportEmail'] => $this->nameSite])
-            ->setFrom(['bspgomel@gmail.com' => 'Письмо послано с сайта БелСтеклоПром'])
+            //->setFrom(['bspgomel@gmail.com' => 'Письмо послано с сайта БелСтеклоПром'])
 
             //для обратной связи:
             //отправляющий должен указать существующий email,
             //т.к. почта будет отправляться через него
             //если указать не существующий email, то почта не придет
-            //->setFrom([$this->email => $this->name])
+            ->setFrom([$this->email => $this->name])
 
             //для ответа
             ->setReplyTo([$this->email => $this->name])
@@ -130,6 +148,8 @@ class ContactForm extends Model
             //загрузка файла
             //->attach($this->file->tempName)
             //->attach($model->imageFile->tempName);
+            //->attach('uploads/scan012.jpg')//работает
+            //->attach('uploads/' . $this->file_load)
 
             ->send();
         return true;

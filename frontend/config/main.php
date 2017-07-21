@@ -78,14 +78,14 @@ return [
                 'port' => '587',
                 'encryption' => 'tls',
             ],*/
-            'transport' => [
+            /*'transport' => [
               'class' => 'Swift_SmtpTransport',
               'host' => 'smtp.gmail.com',
               'username' => 'bspgomel@gmail.com',
               'password' => 'belsteklo1122',
               'port' => '587',
               'encryption' => 'tls',
-            ],
+            ],*/
         ],
         
     ],

@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-lg-5">
 
-                <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
                     <?= $form->field($model, 'file_load[]')->fileInput(['multiple' => true]) ?>
                     <?//= $form->field($model, 'file_load')->fileInput() ?>

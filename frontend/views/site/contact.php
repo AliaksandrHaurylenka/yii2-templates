@@ -27,15 +27,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'email') ?>
 
-                <?= $form->field($model, 'phone')
-                    ->textInput(['placeholder' => "+375(29)348-76-88"]) ?>
+                <?= $form->field($model, 'phone')->textInput(['placeholder' => "+375(29)348-76-88"]) ?>
 
                 <?= $form->field($model, 'subject') ?>
 
                 <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
 <!--                --><?//= $form->field($model, 'file_for_dowland[]')->fileInput(['multiple' => true]) ?>
-            <?= $form->field($model, 'file')->fileInput() ?>
+                <?//= $form->field($model_load, 'file_load[]')->fileInput(['multiple' => true]) ?>
+                <?= $form->field($model, 'file_load[]')->fileInput(['multiple' => true]) ?>
                 <?//= $form->field($model, 'file_for_dowland')->fileInput() ?>
 
                 <?= $form->field($model, 'verifyCode')->widget(Captcha::className(),
