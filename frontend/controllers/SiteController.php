@@ -143,10 +143,14 @@ class SiteController extends Controller
          */
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post())) {
-              $model->file_load = UploadedFile::getInstance($model, 'file_load');
-              $message = Yii::$app->mailer->compose()->attach($model->file_load->tempName);
-            //$model->file_load = UploadedFile::getInstances($model, 'file_load');
-            //$model->file_load->saveAs('attach/' . $model->file->baseName . "." . $model->file->extensions);//прикрепление файла к сообщению
+           /* if (Yii::$app->request->isPost) {//прикрепление файла к сообщению
+                $model->file_load = UploadedFile::getInstances($model, 'file_load');
+                $model->upload();
+            }*/
+            $model->file_load = UploadedFile::getInstances($model, 'file_load');
+            //$model->upload();
+            //$message = Yii::$app->mailer->compose()->attach($model->file_load->tempName);
+
           if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
             return $this->refresh();

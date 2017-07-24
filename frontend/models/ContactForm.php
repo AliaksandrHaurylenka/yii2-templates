@@ -46,7 +46,6 @@ class ContactForm extends Model
 
             //file size, maxFiles
             [['file_load'], 'file', 'extensions' => ['png', 'jpg', 'gif', 'pdf'], 'maxSize' => 1024*1024*5, 'maxFiles' => 4],
-            //[['file'], 'file'],
 
             //пользовательское правило
             //['name', 'myRules'],
@@ -87,7 +86,7 @@ class ContactForm extends Model
         ];
     }
 
-  /*public function upload()
+  public function upload()
   {
     //для загрузки нескольких файлов
     //значение вверху должно быть @var UploadedFile[]
@@ -99,7 +98,7 @@ class ContactForm extends Model
     } else {
       return false;
     }
-  }*/
+  }
 
     /**
      * Sends an email to the specified email address using the information collected by this model.
@@ -110,6 +109,9 @@ class ContactForm extends Model
     public function sendEmail($email)//$email берется в контроллере (см. SiteController->actionContact)
     {
       if ($this->validate()) {
+          //$this->file_load = UploadedFile::getInstances($this->upload(), 'file_load');
+          //$this->file_load->upload();
+
         Yii::$app->mailer->compose([
             //TODO попытка сделать шаблон письма
             //'html' => 'views/message-html',
@@ -146,10 +148,11 @@ class ContactForm extends Model
                 .$this->email.'</p>'
             )
             //загрузка файла
-            //->attach($this->file->tempName)
+            //->attach($this->file_load->tempName)
             //->attach($model->imageFile->tempName);
             //->attach('uploads/scan012.jpg')//работает
             //->attach('uploads/' . $this->file_load)
+            ->attach($this->file_load->tempName)
 
             ->send();
         return true;
