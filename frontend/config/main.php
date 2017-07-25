@@ -66,26 +66,20 @@ return [
 
             //выставляем в true если хотим тестировать отправку
             //тестируемые отправленные письма попадают в frontend/runtime/mail
-            'useFileTransport' => true,
+            //'useFileTransport' => true,
+            'useFileTransport' => false,
 
             //настройки почтового сервера,
             //через который будут приходить письма
-            /*'transport' => [
+            'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.mail.ru',
                 'username' => 'goric0312@mail.ru',
                 'password' => 'integralrimmana',
                 'port' => '587',
                 'encryption' => 'tls',
-            ],*/
-            /*'transport' => [
-              'class' => 'Swift_SmtpTransport',
-              'host' => 'smtp.gmail.com',
-              'username' => 'bspgomel@gmail.com',
-              'password' => 'belsteklo1122',
-              'port' => '587',
-              'encryption' => 'tls',
-            ],*/
+            ],
+
         ],
         
     ],

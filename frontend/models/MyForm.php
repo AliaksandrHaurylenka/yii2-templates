@@ -11,13 +11,14 @@ use yii\web\UploadedFile;
  */
 class MyForm extends Model
 {
-
-  /**
-   * @var UploadedFile
-   */
-  public $file_load;//прикрепить файл
     public $name;
-    //public $email;
+    public $email;
+    public $subject;
+    public $body;
+    /**
+     * @var UploadedFile
+     */
+    public $file_load;//прикрепить файл
 
 
 
@@ -30,13 +31,14 @@ class MyForm extends Model
         return [
             // name, email, subject and body are required
             //[['name', 'email'], 'required'],
-            [['name'], 'required'],
+            //['name', 'required'],
+            //['name', 'safe'],
 
             // email has to be a valid email address
-            //['email', 'email'],
+            ['email', 'email'],
 
             //мин. макс. количество символов
-            //['name', 'string', 'length' => [2, 100]],
+            ['name', 'string', 'length' => [2, 100]],
 
             //удаление в тексте письма лишних пробелов
             [['name'], 'trim'],
@@ -58,7 +60,7 @@ class MyForm extends Model
     {
         return [
             'name' => 'Имя',
-            //'email' => 'E-mail',
+            'email' => 'E-mail',
             'file_load' => 'Файл'
         ];
     }
@@ -67,14 +69,44 @@ class MyForm extends Model
   {
     //для загрузки одного файла
     //значение вверху должно быть @var UploadedFile
-    if ($this->validate()) {
-      $this->file_load->saveAs('uploads/' . $this->file_load->baseName . '.' . $this->file_load->extension);
+    /*if ($this->validate()) {
+      $this->file_load
+          ->saveAs('uploads/'
+              . $this->file_load->baseName
+              . '.'
+              . $this->file_load->extension);
       return true;
     }
     else {
       return false;
-    }
+    }*/
   }
+
+    public function sendEmail($email)
+    {
+        if ($this->validate()) {
+            Yii::$app->mailer->compose()
+                //email получателей
+                //настраивается в frontend/config/params.php
+                ->setTo($email)
+                ->setFrom(['goric0312@mail.ru' => 'Письмо послано с сайта БелСтеклоПром'])
+                ->setReplyTo($this->email)
+                ->setSubject($this->subject)
+                ->setTextBody($this->body)
+                ->setHtmlBody(
+                    '<h3>Здравствуйте, меня зовут '.$this->name.'</h3>'
+                    .$this->body
+                    .'<p style="font-weight: bold;">Почта: '
+                    .$this->email.'</p>'
+                )
+                //->attach('uploads/' . $this->file_load->baseName . '.' . $this->file_load->extension)
+                ->attach($this->file_load->tempName)
+                ->send();
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 }
