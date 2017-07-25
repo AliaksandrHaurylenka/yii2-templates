@@ -11,12 +11,14 @@ use yii\web\UploadedFile;
  */
 class MyForm extends Model
 {
+
   /**
    * @var UploadedFile
    */
-    //public $name;
+  public $file_load;//прикрепить файл
+    public $name;
     //public $email;
-    public $file;//прикрепить файл
+
 
 
 
@@ -28,6 +30,7 @@ class MyForm extends Model
         return [
             // name, email, subject and body are required
             //[['name', 'email'], 'required'],
+            [['name'], 'required'],
 
             // email has to be a valid email address
             //['email', 'email'],
@@ -36,11 +39,11 @@ class MyForm extends Model
             //['name', 'string', 'length' => [2, 100]],
 
             //удаление в тексте письма лишних пробелов
-            //[['name'], 'trim'],
+            [['name'], 'trim'],
 
             //file size, maxFiles
-            [['file'], 'file', 'extensions' => ['png', 'jpg', 'gif', 'pdf'], 'maxSize' => 1024*1024*5],
-            //[['file'], 'file'],
+            //[['file_load'], 'file', 'extensions' => ['png', 'jpg', 'gif', 'pdf'], 'maxSize' => 1024*1024*5],
+            [['file_load'], 'file'],
 
         ];
     }
@@ -54,29 +57,21 @@ class MyForm extends Model
     public function attributeLabels()
     {
         return [
-            //'name' => 'Имя',
+            'name' => 'Имя',
             //'email' => 'E-mail',
-            'file' => 'Файл'
+            'file_load' => 'Файл'
         ];
     }
 
   public function upload()
   {
-    /*if ($this->validate()) {
-      foreach ($this->file as $file) {
-        $filename=Yii::$app->getSecurity()->generateRandomString(15);
-        // echo $filename;
-        $file->saveAs('attach/' . $filename . '.' . $file->extension);
-      }
-      return true;
-    } else {
-      return false;
-    }*/
-
+    //для загрузки одного файла
+    //значение вверху должно быть @var UploadedFile
     if ($this->validate()) {
-      $this->file->saveAs('attach/' . $this->file->baseName . '.' . $this->file->extension);
+      $this->file_load->saveAs('uploads/' . $this->file_load->baseName . '.' . $this->file_load->extension);
       return true;
-    } else {
+    }
+    else {
       return false;
     }
   }

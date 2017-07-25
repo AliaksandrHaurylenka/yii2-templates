@@ -20,8 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-                    <?= $form->field($model, 'file_load[]')->fileInput(['multiple' => true]) ?>
-                    <?//= $form->field($model, 'file_load')->fileInput() ?>
+                    <?//= $form->field($model, 'file_load[]')->fileInput(['multiple' => true]) ?>
+                    <?= $form->field($model, 'file_load')->fileInput() ?>
 
                     <div class="form-group">
                         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>

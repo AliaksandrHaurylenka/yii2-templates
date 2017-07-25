@@ -10,7 +10,7 @@ use yii\web\UploadedFile;
 class UploadForm extends Model
 {
     /**
-     * @var UploadedFile[]
+     * @var UploadedFile
      */
     public $file_load;
  
@@ -18,7 +18,8 @@ class UploadForm extends Model
     {
         return [
             //[['file_for_dowland'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4,'checkExtensionByMimeType'=>false],
-            [['file_load'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
+            //[['file_load'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
+            [['file_load'], 'file'],
         ];
     }
      
@@ -32,23 +33,23 @@ class UploadForm extends Model
 
       //для загрузки одного файла
       //значение вверху должно быть @var UploadedFile
-      /*if ($this->validate()) {
+     if ($this->validate()) {
         $this->file_load->saveAs('uploads/' . $this->file_load->baseName . '.' . $this->file_load->extension);
         return true;
       }
       else {
         return false;
-      }*/
+      }
 
       //для загрузки нескольких файлов
       //значение вверху должно быть @var UploadedFile[]
-      if ($this->validate()) {
+      /*if ($this->validate()) {
         foreach ($this->file_load as $file) {
           $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
         }
         return true;
       } else {
         return false;
-      }
+      }*/
     }
 }

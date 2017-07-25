@@ -12,13 +12,13 @@ use yii\web\UploadedFile;
 class ContactForm extends Model
 {
     public $name;
-    //public $nameSite = 'Костюковка-Спорт';
+    public $nameSite = 'Костюковка-Спорт';
     public $email;
     public $phone;
     public $subject;
     public $body;
     /**
-     * @var UploadedFile[]
+     * @var UploadedFile
      */
     public $file_load;//прикрепить файл
     public $verifyCode;
@@ -34,6 +34,7 @@ class ContactForm extends Model
         return [
             // name, email, subject and body are required
             [['name', 'email', 'subject', 'body'], 'required'],
+            //[['name'], 'required'],
 
             // email has to be a valid email address
             ['email', 'email'],
@@ -45,7 +46,8 @@ class ContactForm extends Model
             [['name', 'body', 'subject'], 'trim'],
 
             //file size, maxFiles
-            [['file_load'], 'file', 'extensions' => ['png', 'jpg', 'gif', 'pdf'], 'maxSize' => 1024*1024*5, 'maxFiles' => 4],
+            //[['file_load'], 'file', 'extensions' => ['png', 'jpg', 'gif', 'pdf'], 'maxSize' => 1024*1024*5, 'maxFiles' => 4],
+            [['file_load'], 'file'],
 
             //пользовательское правило
             //['name', 'myRules'],
@@ -86,19 +88,6 @@ class ContactForm extends Model
         ];
     }
 
-  public function upload()
-  {
-    //для загрузки нескольких файлов
-    //значение вверху должно быть @var UploadedFile[]
-    if ($this->validate()) {
-      foreach ($this->file_load as $file) {
-        $file->saveAs('attach/' . $file->baseName . '.' . $file->extension);
-      }
-      return true;
-    } else {
-      return false;
-    }
-  }
 
     /**
      * Sends an email to the specified email address using the information collected by this model.
@@ -151,8 +140,8 @@ class ContactForm extends Model
             //->attach($this->file_load->tempName)
             //->attach($model->imageFile->tempName);
             //->attach('uploads/scan012.jpg')//работает
-            //->attach('uploads/' . $this->file_load)
-            ->attach($this->file_load->tempName)
+            //->attach('uploads/' . $this->file_load->baseName . '.' . $this->file_load->extension)
+            //->attach($this->file_load->tempName)
 
             ->send();
         return true;

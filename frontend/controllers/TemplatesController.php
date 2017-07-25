@@ -44,10 +44,12 @@ class TemplatesController extends Controller
     {
         $model = new MyForm();
         if (Yii::$app->request->isPost) {
-          $model->file = UploadedFile::getInstance($model, 'file');
+          $model->file_load = UploadedFile::getInstance($model, 'file_load');
           if ($model->upload()) {
-            // file is uploaded successfully
-            //return echo 'Файл успешно загружен';
+            Yii::$app->session->setFlash('success', 'Файл загружен!');
+            return $this->refresh();
+          }else {
+            Yii::$app->session->setFlash('error', 'Внимание! Файл не загружен!!!');
           }
         }
 
@@ -63,23 +65,25 @@ class TemplatesController extends Controller
   {
     $model = new UploadForm();
 
-    //для одног файла
-    /*if (Yii::$app->request->isPost) {
+    //для одного файла
+    if (Yii::$app->request->isPost) {
       $model->file_load = UploadedFile::getInstance($model, 'file_load');
       if ($model->upload()) {
-        // file is uploaded successfully
-        //return echo 'Файл успешно загружен';
+        Yii::$app->session->setFlash('success', 'Файл загружен!');
+        return $this->refresh();
+      }else {
+        Yii::$app->session->setFlash('error', 'Внимание! Файл не загружен!!!');
       }
-    }*/
+    }
 
     //для нескольких файлов
-    if (Yii::$app->request->isPost) {
+    /*if (Yii::$app->request->isPost) {
       $model->file_load = UploadedFile::getInstances($model, 'file_load');
       if ($model->upload()) {
         // file is uploaded successfully
         //return echo 'Файл успешно загружен';
       }
-    }
+    }*/
 
     return $this->render('upload-form', compact('model'));
   }

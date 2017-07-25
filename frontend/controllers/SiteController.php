@@ -123,16 +123,6 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-      /*$model_load = new UploadForm();
-      //для нескольких файлов
-      if (Yii::$app->request->isPost) {
-        $model_load->file_load = UploadedFile::getInstances($model_load, 'file_load');
-        if ($model_load->upload()) {
-          // file is uploaded successfully
-          //return echo 'Файл успешно загружен';
-        }
-      }*/
-
         /**
          * функция ОБРАТНОЙ СВЯЗИ
          * 1. присваиваем переменной класс модели ContactForm
@@ -141,29 +131,38 @@ class SiteController extends Controller
          *          и перезагружается страница (return $this->refresh();)
          *      иначе выводится сообщение об неудаче
          */
-        $model = new ContactForm();
+        /*$model = new ContactForm();
         if ($model->load(Yii::$app->request->post())) {
-           /* if (Yii::$app->request->isPost) {//прикрепление файла к сообщению
-                $model->file_load = UploadedFile::getInstances($model, 'file_load');
-                $model->upload();
-            }*/
-            $model->file_load = UploadedFile::getInstances($model, 'file_load');
-            //$model->upload();
-            //$message = Yii::$app->mailer->compose()->attach($model->file_load->tempName);
-
           if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
             return $this->refresh();
           } else {
             Yii::$app->session->setFlash('error', 'Внимание! Ваше письмо по каким-то причинам не отправлено!!!');
           }
+        }*/
+
+
+      $model_load = new UploadForm();
+      if (Yii::$app->request->isPost) {
+        $model_load->file_load = UploadedFile::getInstance($model_load, 'file_load');
+        if ($model_load->upload()) {
         }
+      }
+      $model = new ContactForm();
+      if ($model->load(Yii::$app->request->post())) {
+        if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+          Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
+          return $this->refresh();
+        } else {
+          Yii::$app->session->setFlash('error', 'Внимание! Ваше письмо по каким-то причинам не отправлено!!!');
+        }
+      }
 
 
-        return $this->render('contact', compact('model', 'message'
-          //'model' => $model,
-          //'model_load' => $model_load,
-        ));
+      //return $this->render('contact', compact('model_load'));
+      //return $this->render('contact', compact('model'));
+        return $this->render('contact', compact('model', 'model_load'));
+
     }
 
     /**

@@ -20,12 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
-                    <?//= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
 
                     <?//= $form->field($model, 'email') ?>
 
                     <?//= $form->field($model, 'file[]')->fileInput(['multiple'=>'multiple']) ?>
-                    <?= $form->field($model, 'file')->fileInput() ?>
+                    <?= $form->field($model, 'file_load')->fileInput() ?>
 
                     <?//= $form->field($model, 'subject') ?>
 
