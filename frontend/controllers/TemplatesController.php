@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\UploadedFile;//прикрепление файлов
 use frontend\models\MyForm;
+use frontend\models\OneForm;
 
 
 /**
@@ -72,8 +73,30 @@ class TemplatesController extends Controller
         return $this->render('form', compact('model'));
     }
 
+
+    /**
+     * Displays Form.
+     *
+     * @return mixed
+     */
+    public function actionOneForm()
+    {
+        $model = new OneForm();
+        if ($model->load(Yii::$app->request->post())) {
+            $model->file_load = UploadedFile::getInstance($model, 'file_load');
+            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
+                return $this->refresh();
+            } else {
+                Yii::$app->session->setFlash('error', 'Внимание! Ваше письмо по каким-то причинам не отправлено!!!');
+            }
+        }
+
+        return $this->render('one-form', compact('model'));
+    }
+
   /**
-   * Displays Form.
+   * Displays UploadForm.
    *
    * @return mixed
    */
@@ -82,7 +105,7 @@ class TemplatesController extends Controller
     $model = new UploadForm();
 
     //для одного файла
-    if (Yii::$app->request->isPost) {
+      if ($model->load(Yii::$app->request->post())) {
       $model->file_load = UploadedFile::getInstance($model, 'file_load');
       if ($model->upload()) {
         Yii::$app->session->setFlash('success', 'Файл загружен!');

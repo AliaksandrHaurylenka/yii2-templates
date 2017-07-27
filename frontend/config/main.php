@@ -66,8 +66,8 @@ return [
 
             //выставляем в true если хотим тестировать отправку
             //тестируемые отправленные письма попадают в frontend/runtime/mail
-            //'useFileTransport' => true,
-            'useFileTransport' => false,
+            'useFileTransport' => true,
+            //'useFileTransport' => false,
 
             //настройки почтового сервера,
             //через который будут приходить письма
