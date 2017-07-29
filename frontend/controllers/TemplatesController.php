@@ -83,7 +83,7 @@ class TemplatesController extends Controller
     {
         $model = new OneForm();
         if ($model->load(Yii::$app->request->post())) {
-            $model->file_load = UploadedFile::getInstance($model, 'file_load');
+            $model->file_load = UploadedFile::getInstance($model, 'file_load');//загрузка файла
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
                 return $this->refresh();

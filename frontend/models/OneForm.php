@@ -4,6 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
+//use yii\swiftmailer\Mailer;
 
 /**
  * ContactForm is the model behind the contact form.
@@ -47,7 +48,7 @@ class OneForm extends Model
             'phone' => 'Телефон',
             'subject' => 'Тема',
             'body' => 'Текст',
-            'file_load' => 'Файл',
+            'file_load' => 'Прикрепите файл',
         ];
     }
 
@@ -64,13 +65,10 @@ class OneForm extends Model
                 ->setHtmlBody(
                     '<h3>Здравствуйте, меня зовут '.$this->name.'</h3>'
                     .$this->body
-                    .'<p style="font-weight: bold;">Телефон: ' . $this->phone.'</p>'
-                    .'<p style="font-weight: bold;">Почта: ' . $this->email.'</p>'
+                    .'<p style="font-weight: bold;">Телефон: ' . $this->phone . '</p>'
+                    .'<p style="font-weight: bold;">Почта: ' . $this->email . '</p>'
                 )
-                ->attach($this->file_load->tempName)
-                //->attach($this->file_load->tempName->name)
-                //->attach($this->file_load->name->tempName)
-                //->attach($this->file_load->baseName . '.' . $this->file_load->extension)
+                ->attach($this->file_load->tempName, ['fileName' => $this->file_load->baseName . '.' . $this->file_load->extension])
                 ->send();
             return true;
         } else {

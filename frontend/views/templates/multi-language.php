@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <li>'<code>&#39;basePath&#39; =&gt; &#39;@app/messages&#39;</code> - папка в папке frontend</li>
         <li></li>
     </ol>
+  <p><a href="https://nix-tips.ru/yii2-api-guides/guide-ru-tutorial-i18n.html" target="_blank">Doc Yii2</a></p>
 
 
 </div>
