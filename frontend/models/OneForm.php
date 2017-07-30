@@ -53,26 +53,41 @@ class OneForm extends Model
     }
 
 
-    public function sendEmail($email)
+    public function sendEmail($email)//$email берется в контроллере (см. SiteController->actionContact)
     {
       if (!$this->validate()) {
         return false;
       }
       $message = Yii::$app->mailer->compose()
-        ->setTo($email)
+        ->setTo($email)//email получателя
+
+        /**
+         * Через какой почтовый хост будет отправляться письмо
+         * в config/main.php в 'mailer' username должно быть также goric0312@mail.ru
+         */
         ->setFrom(['goric0312@mail.ru' => 'My Company'])
-        ->setReplyTo([$this->email => $this->name])
-        ->setSubject($this->subject)
-        ->setTextBody($this->body)
+        /**
+         * в данном случае
+         *отправляющий должен указать существующий email,
+         * т.к. почта будет отправляться через него
+         * если указать не существующий email, то почта не придет
+         */
+        //->setFrom([$this->email => $this->name])
+
+        ->setReplyTo([$this->email => $this->name])//для ответа
+        ->setSubject($this->subject)//тема сообщения
+        ->setTextBody($this->body)//текст сообщения
         ->setHtmlBody(
           '<h3>Здравствуйте, меня зовут '. $this->name.'</h3>'
           .$this->body
           .'<p style="font-weight: bold;">Мой телефон: ' . $this->phone . '</p>'
           .'<p style="font-weight: bold;">Моя почта: ' . $this->email . '</p>'
         )
+
+        //заголовок сообщения укзания почтовикам, что это массовая рассылка, а не спам
         ->addHeader('Precedence', 'bulk');
 
-      if($this->file_load)
+      if($this->file_load)//если поле загрузки файла не пустое
       {
         $message->attach($this->file_load->tempName, ['fileName' => $this->file_load->baseName . '.' . $this->file_load->extension]);
       }
