@@ -55,25 +55,28 @@ class OneForm extends Model
 
     public function sendEmail($email)
     {
-        if ($this->validate()) {
-            Yii::$app->mailer->compose()
-                ->setTo($email)
-                ->setFrom(['goric0312@mail.ru' => 'Письмо послано с сайта БелСтеклоПром'])
-                ->setReplyTo($this->email)
-                ->setSubject($this->subject)
-                ->setTextBody($this->body)
-                ->setHtmlBody(
-                    '<h3>Здравствуйте, меня зовут '.$this->name.'</h3>'
-                    .$this->body
-                    .'<p style="font-weight: bold;">Телефон: ' . $this->phone . '</p>'
-                    .'<p style="font-weight: bold;">Почта: ' . $this->email . '</p>'
-                )
-                ->attach($this->file_load->tempName, ['fileName' => $this->file_load->baseName . '.' . $this->file_load->extension])
-                ->send();
-            return true;
-        } else {
-            return false;
-        }
+      if (!$this->validate()) {
+        return false;
+      }
+      $message = Yii::$app->mailer->compose()
+        ->setTo($email)
+        ->setFrom(['goric0312@mail.ru' => 'My Company'])
+        ->setReplyTo([$this->email => $this->name])
+        ->setSubject($this->subject)
+        ->setTextBody($this->body)
+        ->setHtmlBody(
+          '<h3>Здравствуйте, меня зовут '. $this->name.'</h3>'
+          .$this->body
+          .'<p style="font-weight: bold;">Мой телефон: ' . $this->phone . '</p>'
+          .'<p style="font-weight: bold;">Моя почта: ' . $this->email . '</p>'
+        )
+        ->addHeader('Precedence', 'bulk');
+
+      if($this->file_load)
+      {
+        $message->attach($this->file_load->tempName, ['fileName' => $this->file_load->baseName . '.' . $this->file_load->extension]);
+      }
+      return $message->send();
     }
 
 

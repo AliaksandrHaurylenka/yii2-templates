@@ -10,13 +10,14 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'One Form';
 $this->params['breadcrumbs'][] = $this->title;
+//debug($model);
 ?>
 <div class="site-contact">
   <h1><?= Html::encode($this->title) ?></h1>
   <code><?= __FILE__ ?></code>
 
   <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-6">
       <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'id' => 'contact-form']]); ?>
 
       <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
@@ -29,9 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
 
       <?php ActiveForm::end(); ?>
-    </div>
 
-    <div class="col-lg-7">
       <h2>Форма обратной связи</h2>
       <p>Ссылки:</p>
       <ol>
@@ -80,6 +79,10 @@ $this->params['breadcrumbs'][] = $this->title;
 </code>
       </pre>
 
+    </div>
+
+
+    <div class="col-lg-6">
       <p>Модель:</p>
       <pre>
 <code>
@@ -116,22 +119,25 @@ $this->params['breadcrumbs'][] = $this->title;
       ];
     }
 
-    public function sendEmail($email)
-    {
-      if ($this->validate()) {
-      Yii::$app->mailer->compose()
+  public function sendEmail($email)
+  {
+    if (!$this->validate()) {
+    return false;
+    }
+    $message = Yii::$app->mailer->compose()
       ->setTo($email)
-      ->setFrom(['goric0312@mail.ru' => 'Письмо послано с сайта БелСтеклоПром'])
-      ->setReplyTo($this->email)
+      ->setFrom(['goric0312@mail.ru' => 'My Company'])
+      ->setReplyTo([$this->email => $this->name])
       ->setSubject($this->subject)
       ->setTextBody($this->body)
       ->setHtmlBody($this->body)
-      ->attach($this->file_load->tempName, ['fileName' => $this->file_load->baseName . '.' . $this->file_load->extension])
-      ->send();
-      return true;
-      } else {
-        return false;
-      }
+      ->addHeader('Precedence', 'bulk');
+
+    if($this->file_load)
+    {
+      $message->attach($this->file_load->tempName, ['fileName' => $this->file_load->baseName . '.' . $this->file_load->extension]);
+    }
+    return $message->send();
     }
   }
 </code>
