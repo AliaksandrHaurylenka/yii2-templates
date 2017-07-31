@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\UploadedFile;//прикрепление файлов
 use frontend\models\OneForm;
+use frontend\models\FormSaveMessage;
 
 
 /**
@@ -55,6 +56,26 @@ class TemplatesController extends Controller
         return $this->render('one-form', compact('model'));
     }
 
+
+  /**
+   * Displays Form.
+   *
+   * @return mixed
+   */
+  public function actionFormSaveMessage()
+  {
+    $model = new FormSaveMessage();
+    if( $model->load(Yii::$app->request->post()) ){
+      $model->save();
+      if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+        Yii::$app->session->setFlash('success', 'Спасибо за Ваше письмо. Мы постараемся как можно быстрее Вам ответить!');
+        return $this->refresh();
+      } else {
+        Yii::$app->session->setFlash('error', 'Внимание! Ваше письмо по каким-то причинам не отправлено!!!');
+      }
+    }
+    return $this->render('form-save-message', compact('model'));
+  }
   /**
    * Displays UploadForm.
    *
