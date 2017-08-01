@@ -12,7 +12,7 @@ class m170731_171758_create_seve_message_table extends Migration
      */
     public function up()
     {
-        $this->createTable('seve_message', [
+        $this->createTable('save', [
             'id' => $this->primaryKey(),
             'name' => $this->string(100)->notNull(),
             'email' => $this->string(50)->notNull(),
@@ -27,6 +27,6 @@ class m170731_171758_create_seve_message_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('seve_message');
+        $this->dropTable('save');
     }
 }
