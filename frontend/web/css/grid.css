@@ -1,0 +1,10 @@
+.grid div:nth-child(even) {
+    background: #ccc;
+}
+.grid div:nth-child(odd) {
+    background: red;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}

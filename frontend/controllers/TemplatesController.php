@@ -129,6 +129,16 @@ class TemplatesController extends Controller
         return $this->render('grid-view');
     }
 
+  /**
+   * Displays GridView.
+   *
+   * @return mixed
+   */
+  public function actionCssGrid()
+  {
+    return $this->render('css-grid');
+  }
+
     
 
 
